@@ -8,11 +8,11 @@ export interface WeatherResponseDaily{
     precipitation_probability_max: any
   }
   hourly: {
-    temperature_2m: number,
-    precipitation_probability: number,
-    rain: number,
-    weather_code: number,
-    cloud_cover: any
+    temperature_2m: number[],
+    precipitation_probability: [],
+    rain: [],
+    weather_code: number[],
+    cloud_cover: []
   }
   current: {
     temperature_2m: number
