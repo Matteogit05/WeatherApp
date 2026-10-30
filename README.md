@@ -1,6 +1,7 @@
 # WeatherApp
 
 WeatherApp is a simple web-app where you can check weather forecast.
+
 *this project is currently under development*
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.4.

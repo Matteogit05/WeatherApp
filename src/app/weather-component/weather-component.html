@@ -5,6 +5,9 @@
     <p>Error</p>
 }
 @else if (rDaily.value(); as data) {
+
+    <h3>{{ weatherCodeMap[data.daily.weather_code[0]] }}</h3>
+
     <p>Current temperature: {{ data.current.temperature_2m }} °C</p>
     <p>Max: {{ data.daily.temperature_2m_max }} °C  Min: {{ data.daily.temperature_2m_min }} °C</p>
     <p>Precipitation prob today: {{ data.daily.precipitation_probability_max }}%</p>
