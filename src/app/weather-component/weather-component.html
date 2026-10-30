@@ -1,0 +1,17 @@
+@if (rDaily.isLoading()) {
+    <p>Data is loading, hold...</p>
+}
+@else if (rDaily.error()) {
+    <p>Error</p>
+}
+@else if (rDaily.value(); as data) {
+    <p>Current temperature: {{ data.current.temperature_2m }} °C</p>
+    <p>Max: {{ data.daily.temperature_2m_max }} °C  Min: {{ data.daily.temperature_2m_min }} °C</p>
+    <p>Precipitation prob today: {{ data.daily.precipitation_probability_max }}%</p>
+    <p>Sunrise: {{ data.daily.sunrise }}</p>
+    <p>Sunset: {{ data.daily.sunset }}</p>
+}
+
+<h3>Oggi</h3>
+
+<app-daily-graph />
