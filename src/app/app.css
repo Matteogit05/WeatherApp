@@ -1,5 +1,22 @@
-#maindiv {
+.maindiv {
     display: flex;
     justify-content: center;
     text-align: center;
+}
+
+label, input, button {
+    display: block;
+    text-align: left;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+form {
+    margin-top: 2em;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    text-align: left;
 }

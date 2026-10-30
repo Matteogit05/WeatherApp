@@ -7,7 +7,7 @@ import { CanvasRenderer } from 'echarts/renderers';
 echarts.use([BarChart, LineChart, GridComponent, CanvasRenderer, TitleComponent, TooltipComponent, LegendComponent]);
 import { EChartsCoreOption } from 'echarts/core';
 import { Title } from '@angular/platform-browser';
-import { WeatherResponseDaily } from '../weather-model';
+import { WeatherResponseDaily } from '../models/weather-model';
 import { WeatherService } from '../weather-service';
 
 @Component({

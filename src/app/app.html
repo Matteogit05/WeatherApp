@@ -1,7 +1,27 @@
 <h1>Benvenuto</h1>
 
-<h4>Meteo di Perugia <strong>{{ now.toLocaleDateString() }}</strong> {{ now.getHours() }}:{{ now.getMinutes() }}</h4>
+<h4>Meteo del <strong>{{ now.toLocaleDateString() }}</strong> {{ now.getHours() }}:{{ now.getMinutes() }}</h4>
 
-<div id="maindiv">
-    <app-weather-component [lat]=43.1122 [lon]=12.3888 />
+<div class="maindiv">
+    <app-weather-component [lat]="la" [lon]="lo" />
+</div>
+
+<div class="maindiv">
+    <form [formRoot]="coordForm">
+        <label for="latitude">Latitude:</label>
+        <input type="number" id="latitude" [formField]="coordForm.latitude">
+        @if (coordForm.latitude().touched()){
+            @for (er of coordForm.latitude().errors(); track er.kind) {
+                <p class="error-message">{{ er.message }}</p>
+            }
+        }
+        <label for="longitude">Longitude:</label>
+        <input type="number" id="longitude" [formField]="coordForm.longitude">
+        @if (coordForm.longitude().touched()){
+            @for (er of coordForm.longitude().errors(); track er.kind) {
+                <p class="error-message">{{ er.message }}</p>
+            }
+        }
+        <button type="submit">Submit</button>
+    </form>
 </div>

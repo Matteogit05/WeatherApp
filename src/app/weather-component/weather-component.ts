@@ -1,6 +1,6 @@
 import { httpResource, HttpResourceRef } from '@angular/common/http';
 import { Component, input, signal, inject } from '@angular/core';
-import { WeatherResponseDaily } from '../weather-model';
+import { WeatherResponseDaily } from '../models/weather-model';
 import { WeatherService } from '../weather-service';
 import { DailyGraph } from '../daily-graph/daily-graph';
 

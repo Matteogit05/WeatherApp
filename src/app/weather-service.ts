@@ -1,6 +1,6 @@
 import { httpResource, HttpResourceRef } from '@angular/common/http';
 import { InputSignal, Service } from '@angular/core';
-import { WeatherResponseDaily } from './weather-model';
+import { WeatherResponseDaily } from './models/weather-model';
 
 @Service()
 export class WeatherService {
