@@ -1,0 +1,13 @@
+#card-div {
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    width: 170px;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    background-color: rgb(233, 251, 255);
+    transition: 0.2s;
+}
+
+#card-div:hover {
+    transform: scale(1.02);
+}

@@ -10,17 +10,19 @@
 
     <p>Current temperature: {{ data.current.temperature_2m }} °C</p>
     <p>Max: {{ data.daily.temperature_2m_max }} °C  Min: {{ data.daily.temperature_2m_min }} °C</p>
-    <p>Precipitation prob today: {{ data.daily.precipitation_probability_max }}%</p>
+    <p>Precipitation probability today: {{ data.daily.precipitation_probability_max }}%</p>
     <p>Sunrise: {{ data.daily.sunrise }}</p>
     <p>Sunset: {{ data.daily.sunset }}</p>
 }
 
-<h3>Today</h3>
+<h3 class="inter-label">Today</h3>
 
 <app-daily-graph [weatherData]="rDaily.value()"/>
 
-<h3>Next 7 days</h3>
+<h3 class="inter-label">Next 7 days</h3>
 
-@for (d of days; track $index) {
-    <app-card [weatherData]="rWeekly.value()" [index]="d" />
-}
+<div id="card-flex-div">
+    @for (d of days; track $index) {
+        <app-card [weatherData]="rWeekly.value()" [index]="d" />
+    }
+</div>
