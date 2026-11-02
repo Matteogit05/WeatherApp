@@ -3,9 +3,10 @@ import { Component, input, signal, inject } from '@angular/core';
 import { WeatherResponseDaily } from '../models/weather-model';
 import { WeatherService } from '../weather-service';
 import { DailyGraph } from '../daily-graph/daily-graph';
+import { Card } from '../card/card';
 
 @Component({
-  imports: [DailyGraph],
+  imports: [DailyGraph, Card],
   selector: 'app-weather-component',
   styleUrl: './weather-component.css',
   templateUrl: './weather-component.html',
@@ -16,6 +17,9 @@ export class WeatherComponent {
   
   weatherService = inject(WeatherService)
   rDaily = this.weatherService.getDataDaily(this.lat, this.lon)
+  rWeekly = this.weatherService.getDataWeekly(this.lat, this.lon)
+
+  days = [0, 1, 2, 3, 4, 5, 6]
 
   weatherCodeMap: Record<string, string> = {
     "0": "Clear sky",

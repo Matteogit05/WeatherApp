@@ -1,0 +1,10 @@
+@if (weatherData()?.daily; as data) {
+    <div id="card-div">
+        <h3>{{ weatherCodeMap[data.weather_code[index()]] }}</h3>
+        <p>{{ data.precipitation_probability_max[index()] }} %</p>
+        <p>{{ data.temperature_2m_max[index()] }} °C</p>
+        <p>{{ data.temperature_2m_min[index()] }} °C</p>
+    </div>
+
+    <p>{{ data.time[index()] | date:'dd/MM' }}</p>
+}

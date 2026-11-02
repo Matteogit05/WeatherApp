@@ -15,6 +15,12 @@
     <p>Sunset: {{ data.daily.sunset }}</p>
 }
 
-<h3>Oggi</h3>
+<h3>Today</h3>
 
 <app-daily-graph [weatherData]="rDaily.value()"/>
+
+<h3>Next 7 days</h3>
+
+@for (d of days; track $index) {
+    <app-card [weatherData]="rWeekly.value()" [index]="d" />
+}

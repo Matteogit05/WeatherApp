@@ -1,6 +1,6 @@
-<h1>Benvenuto</h1>
+<h1>Welcome</h1>
 
-<h4>Meteo del <strong>{{ now.toLocaleDateString() }}</strong> {{ now.getHours() }}:{{ now.getMinutes() }}</h4>
+<h4>Weather forecast: <strong>{{ now.toLocaleDateString() }}</strong> {{ now.getHours() }}:{{ now.getMinutes() }}</h4>
 
 <div class="maindiv">
     <app-weather-component [lat]="la" [lon]="lo" />
