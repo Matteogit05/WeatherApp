@@ -4,7 +4,7 @@
 }
 
 .chart {
-    width: min(800px, 100%);
+    width: 800px;
     height: 400px;
     margin: 0 auto;
     margin-top: -1em;

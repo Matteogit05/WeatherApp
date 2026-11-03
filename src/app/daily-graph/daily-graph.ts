@@ -38,7 +38,7 @@ export class DailyGraph {
         {
           type: 'value',
           position: 'left',
-          offset: 110,
+          offset: 45,
           axisLabel: {
             formatter: '{value} °C'
           }
@@ -46,14 +46,13 @@ export class DailyGraph {
         {
           type: 'value',
           position: 'left',
-          offset: 60,
           axisLabel: {
             formatter: '{value} %'
           }
         },
         {
           type: 'value',
-          position: 'left',
+          position: 'right',
           axisLabel: {
             formatter: '{value} mm'
           }

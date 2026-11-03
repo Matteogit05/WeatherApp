@@ -22,8 +22,8 @@ export class App {
   lo = 12.3888
 
   readonly model = signal<Coordinate>({
-    latitude: 40,
-    longitude: 40
+    latitude: 0,
+    longitude: 0
   })
 
   coordForm = form(this.model, path => {

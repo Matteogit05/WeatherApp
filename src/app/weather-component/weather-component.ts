@@ -21,6 +21,10 @@ export class WeatherComponent {
 
   days = [0, 1, 2, 3, 4, 5, 6]
 
+  formatTime(isoDate: string): string {
+    return isoDate.slice(11, 16)
+  }
+
   weatherCodeMap: Record<string, string> = {
     "0": "Clear sky",
     "1": "Mainly clear",
