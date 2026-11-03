@@ -1,3 +1,14 @@
+.main-par {
+    text-align: left;
+    margin-left: 2.1em;
+    margin-top: -0.2em;
+}
+
+#coordinates {
+    font-size: 10px;
+    margin-left: 3em;
+}
+
 :host {
     display: block;
 }
@@ -16,7 +27,7 @@
     font-size: 30px;
     text-align: left;
     margin-left: 1em;
-    margin-top: 1.8em;
+    margin-top: 2em;
 }
 
 .box-container {
@@ -56,4 +67,29 @@
 #wc {
     font-size: 35px;
     margin-top: 2em;
+}
+
+#arrow-icon-up {
+    height: 20px;
+    width: 20px;
+    margin-right: .5em;
+}
+
+#arrow-icon-down {
+    height: 23px;
+    width: 23px;
+    margin-right: .5em;
+    margin-left: -.06em;
+}
+
+.sunrise-set{
+    height: 35px;
+    width: 35px;
+    margin-left: .7em;
+    margin-bottom: -.4em;
+}
+
+#raindrop {
+    height: 40px;
+    width: 40px;
 }

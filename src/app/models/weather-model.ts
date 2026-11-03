@@ -18,7 +18,8 @@ export interface WeatherResponseDaily{
     time: string[]
   }
   current: {
-    temperature_2m: number
+    temperature_2m: number,
+    time: string
   }
   timezone: string
   forecast_days: number

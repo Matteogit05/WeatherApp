@@ -54,9 +54,10 @@ button {
     height: 25px;
     width: 65px;
     border: none;
-    background-color: lightblue;
+    background-color: rgb(198, 244, 255);
     border-radius: 6px;
     transition: 0.5s;
+    font-family: 'Google Sans Flex', sans-serif;
 }
 
 button:hover {
