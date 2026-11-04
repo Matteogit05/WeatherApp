@@ -1,9 +1,9 @@
-@if (weatherData()?.daily; as data) {
+@if (weatherData()?.daily) {
     <div id="card-div">
-        <h3>{{ weatherCodeMap[data.weather_code[index()]] }}</h3>
-        <p>{{ data.precipitation_probability_max[index()] }} %</p>
-        <p>{{ data.temperature_2m_max[index()] }} °C, {{ data.temperature_2m_min[index()] }} °C</p>
+        <h3>{{ weatherCode() }}</h3>
+        <p>{{ precProb() }} %</p>
+        <p>{{ maxTemperature() }} °C, {{ minTemperature() }} °C</p>
     </div>
 
-    <p>{{ data.time[index()] | date:'dd/MM' }}</p>
+    <p>{{ weekDate() | date:'dd/MM' }}</p>
 }

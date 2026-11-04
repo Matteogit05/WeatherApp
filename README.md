@@ -8,7 +8,7 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Attributions
 
-The icons in this project come from [Flaticon](https://flaticon.com)
+The icons in this project come from [Flaticon](https://flaticon.com).
 
 ## Development server
 

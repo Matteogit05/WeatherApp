@@ -18,8 +18,27 @@ export class WeatherComponent {
   weatherService = inject(WeatherService)
   rDaily = this.weatherService.getDataDaily(this.lat, this.lon)
   rWeekly = this.weatherService.getDataWeekly(this.lat, this.lon)
-  weatherLabel = computed(()=> {
-    return this.weatherCodeMap[this.rDaily.value()!.hourly.weather_code[0]]
+
+  weatherCode = computed(() => {
+    return this.weatherCodeMap[this.rDaily.value()!.daily.weather_code]
+  })
+  currentTemperature = computed(() => {
+    return this.rDaily.value()!.current.temperature_2m
+  })
+  maxTemperature = computed(() => {
+    return this.rDaily.value()!.daily.temperature_2m_max
+  })
+  minTemperature = computed(() => {
+    return this.rDaily.value()!.daily.temperature_2m_min
+  })
+  precProb = computed(() => {
+    return this.rDaily.value()!.daily.precipitation_probability_max
+  })
+  sunrise = computed(() => {
+    return this.formatTime(this.rDaily.value()!.daily.sunrise[0])
+  })
+  sunset = computed(() => {
+    return this.formatTime(this.rDaily.value()!.daily.sunset[0])
   })
 
   days = [0, 1, 2, 3, 4, 5, 6]

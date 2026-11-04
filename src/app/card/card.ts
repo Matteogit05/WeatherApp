@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, computed } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { WeatherResponseWeekly } from '../models/weather-model';
 
@@ -11,6 +11,22 @@ import { WeatherResponseWeekly } from '../models/weather-model';
 export class Card {
   weatherData = input<WeatherResponseWeekly>()
   index = input.required<number>()
+
+  weatherCode = computed(() => {
+    return this.weatherCodeMap[this.weatherData()!.daily.weather_code[this.index()]]
+  })
+  precProb = computed(() => {
+    return this.weatherData()!.daily.precipitation_probability_max[this.index()]
+  })
+  maxTemperature = computed(() => {
+    return this.weatherData()!.daily.temperature_2m_max[this.index()]
+  })
+  minTemperature = computed(() => {
+    return this.weatherData()!.daily.temperature_2m_min[this.index()]
+  })
+  weekDate = computed(() => {
+    return this.weatherData()!.daily.time[this.index()]
+  })
 
   weatherCodeMap: Record<string, string> = {
     "0": "Clear sky",
