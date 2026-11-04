@@ -7,8 +7,8 @@ import { CanvasRenderer } from 'echarts/renderers';
 echarts.use([BarChart, LineChart, GridComponent, CanvasRenderer, TitleComponent, TooltipComponent, LegendComponent]);
 import { EChartsCoreOption } from 'echarts/core';
 import { Title } from '@angular/platform-browser';
-import { WeatherResponseDaily } from '../models/weather-model';
-import { WeatherService } from '../weather-service';
+import { WeatherResponse } from '../models/weather-model';
+import { WeatherService } from '../services/weather-service';
 
 @Component({
   imports: [NgxEchartsDirective],
@@ -18,7 +18,7 @@ import { WeatherService } from '../weather-service';
   providers: [provideEchartsCore({ echarts })]
 })
 export class DailyGraph {
-  weatherData = input<WeatherResponseDaily>()
+  weatherData = input<WeatherResponse>()
   weatherService = inject(WeatherService)
 
   chartOption = computed<EChartsCoreOption>(() => {
@@ -48,13 +48,19 @@ export class DailyGraph {
           position: 'left',
           axisLabel: {
             formatter: '{value} %'
-          }
+          },
+          min: 0,
+          max: 100
         },
         {
           type: 'value',
           position: 'right',
           axisLabel: {
             formatter: '{value} mm'
+          },
+          min: 0,
+          max: (value: {min: number, max: number}) => {
+            return Math.max(value.max, 5)
           }
         }
       ],

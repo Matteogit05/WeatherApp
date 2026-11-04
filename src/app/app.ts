@@ -4,10 +4,10 @@ import { RouterOutlet } from '@angular/router';
 import { fetchWeatherApi } from 'openmeteo';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { httpResource } from '@angular/common/http';
-import { WeatherResponseDaily } from './models/weather-model';
+import { WeatherResponse } from './models/weather-model';
 import { WeatherComponent } from './weather-component/weather-component';
 import { Coordinate } from './models/coordinate-model';
-import { StorageService } from './storage-service';
+import { StorageService } from './services/storage-service';
 
 @Component({
   imports: [WeatherComponent, FormRoot, FormField],

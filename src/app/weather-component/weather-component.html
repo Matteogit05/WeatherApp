@@ -1,15 +1,15 @@
-<h4 class="main-par">Weather forecast of: {{ formatDateTime(rDaily.value()?.current?.time) }}</h4>
+<h4 class="main-par">Weather forecast of: {{ formatDateTime(response.value()?.current?.time) }}</h4>
 <p class="main-par" id="coordinates">Coordinates: {{ lat() }}, {{ lon() }}</p>
 
 <h3 class="inter-label">Today</h3>
 
-@if (rDaily.isLoading()) {
+@if (response.isLoading()) {
     <p>Data is loading, hold...</p>
 }
-@else if (rDaily.error()) {
+@else if (response.error()) {
     <p>Error</p>
 }
-@else if (rDaily.value()) {
+@else if (response.value()) {
     <p id="wc">{{ weatherCode() }}</p>
     <div class="box-container">
         <div class="box">
@@ -25,20 +25,20 @@
     </div>
 }
 
-<app-daily-graph id="graph" [weatherData]="rDaily.value()"/>
+<app-daily-graph id="graph" [weatherData]="response.value()"/>
 
 <h3 class="inter-label">Next 7 days</h3>
 
 <div id="card-flex-div">
-    @if (rWeekly.isLoading()) {
+    @if (response.isLoading()) {
         <p>Data is loading, hold...</p>
     }
-    @else if (rWeekly.error()) {
+    @else if (response.error()) {
         <p>Error</p>
     }
-    @else if (rWeekly.value()) {
+    @else if (response.value()) {
         @for (d of days; track $index) {
-            <app-card [weatherData]="rWeekly.value()" [index]="d" />
+            <app-card [weatherData]="response.value()" [index]="d" />
         }
     }
 </div>

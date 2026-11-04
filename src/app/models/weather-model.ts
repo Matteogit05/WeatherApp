@@ -1,13 +1,12 @@
-import { Data } from "@angular/router"
-
-export interface WeatherResponseDaily{
+export interface WeatherResponse{
   daily: {
-    sunrise: string,
-    sunset: string,
-    weather_code: number,
-    temperature_2m_max: number,
-    temperature_2m_min: number,
-    precipitation_probability_max: number
+    sunrise: string[],
+    sunset: string[],
+    weather_code: number[],
+    temperature_2m_max: number[],
+    temperature_2m_min: number[],
+    precipitation_probability_max: number[],
+    time: string[]
   }
   hourly: {
     temperature_2m: number[],
@@ -21,17 +20,4 @@ export interface WeatherResponseDaily{
     temperature_2m: number,
     time: string
   }
-  timezone: string
-  forecast_days: number
-}
-
-export interface WeatherResponseWeekly {
-  daily: {
-    weather_code: number[],
-    temperature_2m_max: number[],
-    temperature_2m_min: number[]
-    precipitation_probability_max: any,
-    time: string[]
-  }
-  timezone: string
 }

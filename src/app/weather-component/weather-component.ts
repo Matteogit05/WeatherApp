@@ -1,7 +1,7 @@
 import { httpResource, HttpResourceRef } from '@angular/common/http';
 import { Component, input, signal, inject, computed } from '@angular/core';
-import { WeatherResponseDaily } from '../models/weather-model';
-import { WeatherService } from '../weather-service';
+import { WeatherResponse } from '../models/weather-model';
+import { WeatherService } from '../services/weather-service';
 import { DailyGraph } from '../daily-graph/daily-graph';
 import { Card } from '../card/card';
 
@@ -16,29 +16,28 @@ export class WeatherComponent {
   lon = input.required<number>()
   
   weatherService = inject(WeatherService)
-  rDaily = this.weatherService.getDataDaily(this.lat, this.lon)
-  rWeekly = this.weatherService.getDataWeekly(this.lat, this.lon)
+  response = this.weatherService.getData(this.lat, this.lon)
 
   weatherCode = computed(() => {
-    return this.weatherCodeMap[this.rDaily.value()!.daily.weather_code]
+    return this.weatherCodeMap[this.response.value()!.daily.weather_code[0]]
   })
   currentTemperature = computed(() => {
-    return this.rDaily.value()!.current.temperature_2m
+    return this.response.value()!.current.temperature_2m
   })
   maxTemperature = computed(() => {
-    return this.rDaily.value()!.daily.temperature_2m_max
+    return this.response.value()!.daily.temperature_2m_max[0]
   })
   minTemperature = computed(() => {
-    return this.rDaily.value()!.daily.temperature_2m_min
+    return this.response.value()!.daily.temperature_2m_min[0]
   })
   precProb = computed(() => {
-    return this.rDaily.value()!.daily.precipitation_probability_max
+    return this.response.value()!.daily.precipitation_probability_max[0]
   })
   sunrise = computed(() => {
-    return this.formatTime(this.rDaily.value()!.daily.sunrise[0])
+    return this.formatTime(this.response.value()!.daily.sunrise[0])
   })
   sunset = computed(() => {
-    return this.formatTime(this.rDaily.value()!.daily.sunset[0])
+    return this.formatTime(this.response.value()!.daily.sunset[0])
   })
 
   days = [0, 1, 2, 3, 4, 5, 6]

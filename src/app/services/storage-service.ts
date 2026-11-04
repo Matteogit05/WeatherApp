@@ -1,6 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { effect, inject, PLATFORM_ID, Service, signal } from '@angular/core';
-import { Coordinate } from './models/coordinate-model';
+import { Coordinate } from '../models/coordinate-model';
 
 @Service()
 export class StorageService {

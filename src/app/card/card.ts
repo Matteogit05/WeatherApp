@@ -1,6 +1,6 @@
 import { Component, input, computed } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { WeatherResponseWeekly } from '../models/weather-model';
+import { WeatherResponse } from '../models/weather-model';
 
 @Component({
   imports: [DatePipe],
@@ -9,7 +9,7 @@ import { WeatherResponseWeekly } from '../models/weather-model';
   templateUrl: './card.html',
 })
 export class Card {
-  weatherData = input<WeatherResponseWeekly>()
+  weatherData = input<WeatherResponse>()
   index = input.required<number>()
 
   weatherCode = computed(() => {
