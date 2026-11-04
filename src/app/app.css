@@ -5,9 +5,9 @@
 }
 
 h1 {
-    font-size: 50px;
-    margin-left: .7em;
-    margin-top: 1.5em;
+    font-size: 70px;
+    margin-left: .5em;
+    margin-top: 2em;
 }
 
 h4 {
@@ -54,7 +54,7 @@ button {
     height: 25px;
     width: 65px;
     border: none;
-    background-color: rgb(198, 244, 255);
+    background-color: rgb(172, 231, 246);
     border-radius: 6px;
     transition: 0.5s;
     font-family: 'Google Sans Flex', sans-serif;
@@ -63,4 +63,17 @@ button {
 button:hover {
     box-shadow: 0px 0px 5px 1px lightgray;
     transform: scale(1.01);
+}
+
+#hero-image {
+    height: 250px;
+    margin-top: 5em;
+    margin-right: 8em;
+}
+
+#container-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }

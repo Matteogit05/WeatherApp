@@ -10,12 +10,12 @@
     <p>Error</p>
 }
 @else if (rDaily.value(); as data) {
-    <p id="wc">{{ weatherCodeMap[data.daily.weather_code[0]] }}</p>
+    <p id="wc">{{ weatherLabel() }}</p>
     <div class="box-container">
         <div class="box">
             <p id="current-temperature">{{ data.current.temperature_2m }} °</p>
-            <p class="max-min" id="max"><img id="arrow-icon-up" src="/caret-arrow-up.png" />{{ data.daily.temperature_2m_max }}°</p>
-            <p class="max-min"><img id="arrow-icon-down" src="/down.png" />{{ data.daily.temperature_2m_min }}°</p>
+            <p class="max-min" id="max"><img id="arrow-icon-up" src="/caret-arrow-up.png" />{{ data.daily.temperature_2m_max }} °C</p>
+            <p class="max-min"><img id="arrow-icon-down" src="/down.png" />{{ data.daily.temperature_2m_min }} °C</p>
         </div>
         <div class="box">
             <p id="prec-prob">{{ data.daily.precipitation_probability_max }} % <img id="raindrop" src="/raindrop.png"></p>

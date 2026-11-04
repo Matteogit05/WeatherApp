@@ -1,5 +1,5 @@
 import { httpResource, HttpResourceRef } from '@angular/common/http';
-import { Component, input, signal, inject } from '@angular/core';
+import { Component, input, signal, inject, computed } from '@angular/core';
 import { WeatherResponseDaily } from '../models/weather-model';
 import { WeatherService } from '../weather-service';
 import { DailyGraph } from '../daily-graph/daily-graph';
@@ -18,6 +18,9 @@ export class WeatherComponent {
   weatherService = inject(WeatherService)
   rDaily = this.weatherService.getDataDaily(this.lat, this.lon)
   rWeekly = this.weatherService.getDataWeekly(this.lat, this.lon)
+  weatherLabel = computed(()=> {
+    return this.weatherCodeMap[this.rDaily.value()!.hourly.weather_code[0]]
+  })
 
   days = [0, 1, 2, 3, 4, 5, 6]
 
