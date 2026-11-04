@@ -1,4 +1,4 @@
-import { Component, signal, inject, WritableSignal } from '@angular/core';
+import { Component, signal, inject, WritableSignal, computed } from '@angular/core';
 import { form, FormRoot, FormField, required } from '@angular/forms/signals'
 import { RouterOutlet } from '@angular/router';
 import { fetchWeatherApi } from 'openmeteo';
@@ -7,6 +7,7 @@ import { httpResource } from '@angular/common/http';
 import { WeatherResponseDaily } from './models/weather-model';
 import { WeatherComponent } from './weather-component/weather-component';
 import { Coordinate } from './models/coordinate-model';
+import { StorageService } from './storage-service';
 
 @Component({
   imports: [WeatherComponent, FormRoot, FormField],
@@ -16,14 +17,16 @@ import { Coordinate } from './models/coordinate-model';
 })
 export class App {
   protected readonly title = signal('WeatherApp');
+  sessionStorage = inject(StorageService)
+
   now: Date = new Date()
 
-  la = 43.1122
-  lo = 12.3888
+  la = computed(() => this.sessionStorage.coordinates().latitude)
+  lo = computed(() => this.sessionStorage.coordinates().longitude)
 
   readonly model = signal<Coordinate>({
-    latitude: 0,
-    longitude: 0
+    latitude: this.la(),
+    longitude: this.lo()
   })
 
   coordForm = form(this.model, path => {
@@ -32,8 +35,10 @@ export class App {
   }, {
     submission: {
       action: async frm => {
-        this.la = frm().value().latitude
-        this.lo = frm().value().longitude
+        this.sessionStorage.coordinates.set({
+          latitude: frm().value().latitude,
+          longitude: frm().value().longitude
+        })
       }
     }
   })
