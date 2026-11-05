@@ -38,7 +38,17 @@
     }
     @else if (response.value()) {
         @for (d of days; track $index) {
-            <app-card [weatherData]="response.value()" [index]="d" />
+            <div id="card-div">
+                <h3>{{ weatherCodeMap[response.value()!.daily.weather_code[d]] }}</h3>
+                @if (response.value()!.daily.precipitation_probability_max[d] == null) {
+                    <p class="card-p">N/A</p>
+                }
+                @else {
+                    <p class="card-p">{{ response.value()!.daily.precipitation_probability_max[d] }} %</p>
+                }
+                <p class="card-p">{{ response.value()!.daily.temperature_2m_max[d] }} °C, {{ response.value()!.daily.temperature_2m_min[d] }} °C</p>
+                <p id="card-date"><strong>{{ response.value()!.daily.time[d] | date:'dd/MM' }}</strong></p>
+            </div>
         }
     }
 </div>

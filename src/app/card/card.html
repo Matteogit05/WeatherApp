@@ -1,7 +1,12 @@
 @if (weatherData()?.daily) {
     <div id="card-div">
         <h3>{{ weatherCode() }}</h3>
-        <p>{{ precProb() }} %</p>
+        @if (precProb() == null) {
+            <p>N/A</p>
+        }
+        @else {
+            <p>{{ precProb() }} %</p> 
+        }
         <p>{{ maxTemperature() }} °C, {{ minTemperature() }} °C</p>
     </div>
 

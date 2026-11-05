@@ -4,9 +4,10 @@ import { WeatherResponse } from '../models/weather-model';
 import { WeatherService } from '../services/weather-service';
 import { DailyGraph } from '../daily-graph/daily-graph';
 import { Card } from '../card/card';
+import { DatePipe } from '@angular/common';
 
 @Component({
-  imports: [DailyGraph, Card],
+  imports: [DailyGraph, DatePipe],
   selector: 'app-weather-component',
   styleUrl: './weather-component.css',
   templateUrl: './weather-component.html',
@@ -40,7 +41,7 @@ export class WeatherComponent {
     return this.formatTime(this.response.value()!.daily.sunset[0])
   })
 
-  days = [0, 1, 2, 3, 4, 5, 6]
+  days = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
   formatTime(isoDate: string): string {
     return isoDate.slice(11, 16)
@@ -64,25 +65,25 @@ export class WeatherComponent {
     "51": "Light drizzle",
     "53": "Moderate drizzle",
     "55": "Dense drizzle",
-    "56": "Light freezing drizzle",
-    "57": "Dense freezing drizzle",
+    "56": "Freezing drizzle",
+    "57": "Freezing drizzle",
     "61": "Slight rain",
     "63": "Moderate rain",
     "65": "Heavy rain",
-    "66": "Light freezing rain",
-    "67": "Heavy freezing rain",
+    "66": "Freezing rain",
+    "67": "Freezing rain",
     "71": "Slight snowfall",
     "73": "Moderate snowfall",
     "75": "Heavy snowfall",
     "77": "Snow grains",
-    "80": "Slight rain showers",
-    "81": "Moderate rain showers",
-    "82": "Violent rain showers",
-    "85": "Slight snow showers",
-    "86": "Heavy snow showers",
+    "80": "Slight showers",
+    "81": "Moderate showers",
+    "82": "Violent showers",
+    "85": "Snow showers",
+    "86": "Snow showers",
     "95": "Thunderstorm",
-    "96": "Thunderstorm with slight hail",
+    "96": "Thunderstorm with hail",
     "97": "Heavy thunderstorm",
-    "99": "Thunderstorm with heavy hail"
+    "99": "Thunderstorm with hail"
   }
 }
