@@ -1,5 +1,5 @@
 import { httpResource, HttpResourceRef } from '@angular/common/http';
-import { Component, input, signal, inject, computed } from '@angular/core';
+import { Component, input, signal, inject, computed, InputSignal } from '@angular/core';
 import { WeatherResponse } from '../models/weather-model';
 import { WeatherService } from '../services/weather-service';
 import { DailyGraph } from '../daily-graph/daily-graph';
@@ -14,33 +14,45 @@ import { Card } from '../card/card';
 export class WeatherComponent {
   lat = input.required<number>()
   lon = input.required<number>()
+  index = 0
   
   weatherService = inject(WeatherService)
   response = this.weatherService.getData(this.lat, this.lon)
 
   weatherCode = computed(() => {
-    return this.weatherCodeMap[this.response.value()!.daily.weather_code[0]]
+    return this.response.value()!.daily.weather_code
   })
   currentTemperature = computed(() => {
     return this.response.value()!.current.temperature_2m
   })
   maxTemperature = computed(() => {
-    return this.response.value()!.daily.temperature_2m_max[0]
+    return this.response.value()!.daily.temperature_2m_max
   })
   minTemperature = computed(() => {
-    return this.response.value()!.daily.temperature_2m_min[0]
+    return this.response.value()!.daily.temperature_2m_min
   })
   precProb = computed(() => {
-    return this.response.value()!.daily.precipitation_probability_max[0]
+    return this.response.value()!.daily.precipitation_probability_max
   })
   sunrise = computed(() => {
-    return this.formatTime(this.response.value()!.daily.sunrise[0])
+    return this.response.value()!.daily.sunrise
   })
   sunset = computed(() => {
-    return this.formatTime(this.response.value()!.daily.sunset[0])
+    return this.response.value()!.daily.sunset
+  })
+  currentTime = computed(() => {
+    return this.response.value()!.current.time
+  })
+  date = computed(() => {
+    return this.response.value()!.daily.time
   })
 
-  days = [0, 1, 2, 3, 4, 5, 6]
+  receiveIndex(evt: number) {
+    this.index = evt
+    console.log(`event received: ${evt}`)
+  }
+
+  days = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
   formatTime(isoDate: string): string {
     return isoDate.slice(11, 16)
@@ -51,7 +63,7 @@ export class WeatherComponent {
       return ''
     }
 
-    return `${isoDate.slice(8, 10)}/${isoDate.slice(5, 7)}/${isoDate.slice(0, 4)}, ${isoDate.slice(11, 16)}`
+    return `${isoDate.slice(8, 10)}/${isoDate.slice(5, 7)}/${isoDate.slice(0, 4)} ${isoDate.slice(11, 16)}`
   }
 
   weatherCodeMap: Record<string, string> = {
@@ -64,25 +76,25 @@ export class WeatherComponent {
     "51": "Light drizzle",
     "53": "Moderate drizzle",
     "55": "Dense drizzle",
-    "56": "Light freezing drizzle",
-    "57": "Dense freezing drizzle",
+    "56": "Freezing drizzle",
+    "57": "Freezing drizzle",
     "61": "Slight rain",
     "63": "Moderate rain",
     "65": "Heavy rain",
-    "66": "Light freezing rain",
-    "67": "Heavy freezing rain",
+    "66": "Freezing rain",
+    "67": "Freezing rain",
     "71": "Slight snowfall",
     "73": "Moderate snowfall",
     "75": "Heavy snowfall",
     "77": "Snow grains",
-    "80": "Slight rain showers",
-    "81": "Moderate rain showers",
-    "82": "Violent rain showers",
-    "85": "Slight snow showers",
-    "86": "Heavy snow showers",
+    "80": "Slight showers",
+    "81": "Moderate showers",
+    "82": "Violent showers",
+    "85": "Snow showers",
+    "86": "Snow showers",
     "95": "Thunderstorm",
-    "96": "Thunderstorm with slight hail",
+    "96": "Thunderstorm with hail",
     "97": "Heavy thunderstorm",
-    "99": "Thunderstorm with heavy hail"
+    "99": "Thunderstorm with hail"
   }
 }

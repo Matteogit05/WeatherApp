@@ -1,8 +1,3 @@
-<h4 class="main-par">Weather forecast of: {{ formatDateTime(response.value()?.current?.time) }}</h4>
-<p class="main-par" id="coordinates">Coordinates: {{ lat() }}, {{ lon() }}</p>
-
-<h3 class="inter-label">Today</h3>
-
 @if (response.isLoading()) {
     <p>Data is loading, hold...</p>
 }
@@ -10,17 +5,23 @@
     <p>Error</p>
 }
 @else if (response.value()) {
-    <p id="wc">{{ weatherCode() }}</p>
+    <h4 id="main-par">Today's weather forecast, {{ formatTime(currentTime()) }}</h4>
+    <p id="coordinates">Coordinates: {{ lat() }}, {{ lon() }}</p>
+
+    <p id="current-temperature">{{ currentTemperature() }} °C</p>
+    <p id="current-wc">{{ weatherCodeMap[weatherCode()[0]] }}</p>
+
+    <p id="date"><strong>{{ formatDateTime(date()[index]) }} forecast</strong></p>
     <div class="box-container">
         <div class="box">
-            <p id="current-temperature">{{ currentTemperature() }} °</p>
-            <p class="max-min" id="max"><img id="arrow-icon-up" src="/caret-arrow-up.png" />{{ maxTemperature() }} °C</p>
-            <p class="max-min"><img id="arrow-icon-down" src="/down.png" />{{ minTemperature() }} °C</p>
+            <p id="wc">{{ weatherCodeMap[weatherCode()[index]] }}</p>
+            <p class="max-min" id="max"><img id="arrow-icon-up" src="/caret-arrow-up.png" />{{ maxTemperature()[index] }} °C</p>
+            <p class="max-min"><img id="arrow-icon-down" src="/down.png" />{{ minTemperature()[index] }} °C</p>
         </div>
         <div class="box">
-            <p id="prec-prob">{{ precProb() }} % <img id="raindrop" src="/raindrop.png"></p>
-            <p class="rise-set">{{ sunrise() }} <img class="sunrise-set" src="/sunrise.png"></p>
-            <p class="rise-set">{{ sunset() }} <img class="sunrise-set" src="/sunset.png"></p>
+            <p id="prec-prob">{{ precProb()[index] }} % <img id="raindrop" src="/raindrop.png"></p>
+            <p class="rise-set">{{ formatTime(sunrise()[index]) }} <img class="rise-set-icon" src="/sunrise.png"></p>
+            <p class="rise-set">{{ formatTime(sunset()[index]) }} <img class="rise-set-icon" src="/sunset.png"></p>
         </div>
     </div>
 }
@@ -38,7 +39,7 @@
     }
     @else if (response.value()) {
         @for (d of days; track $index) {
-            <app-card [weatherData]="response.value()" [index]="d" />
+            <app-card [weatherData]="response.value()" [index]="d" (broadcaster)="receiveIndex($event)" />
         }
     }
 </div>

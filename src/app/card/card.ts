@@ -1,4 +1,4 @@
-import { Component, input, computed } from '@angular/core';
+import { Component, input, computed, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { WeatherResponse } from '../models/weather-model';
 
@@ -11,6 +11,8 @@ import { WeatherResponse } from '../models/weather-model';
 export class Card {
   weatherData = input<WeatherResponse>()
   index = input.required<number>()
+
+  broadcaster = output<any>()
 
   weatherCode = computed(() => {
     return this.weatherCodeMap[this.weatherData()!.daily.weather_code[this.index()]]
@@ -27,6 +29,11 @@ export class Card {
   weekDate = computed(() => {
     return this.weatherData()!.daily.time[this.index()]
   })
+
+  onClick(){
+    this.broadcaster.emit(this.index())
+    console.log('event emitted')
+  }
 
   weatherCodeMap: Record<string, string> = {
     "0": "Clear sky",

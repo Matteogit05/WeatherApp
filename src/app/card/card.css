@@ -11,3 +11,7 @@
 #card-div:hover {
     transform: scale(1.02);
 }
+
+#card-div:active {
+    border: 2px solid blue;
+}
