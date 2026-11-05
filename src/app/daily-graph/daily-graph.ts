@@ -19,6 +19,7 @@ import { WeatherService } from '../services/weather-service';
 })
 export class DailyGraph {
   weatherData = input<WeatherResponse>()
+  index = input<number>(0)
   weatherService = inject(WeatherService)
 
   chartOption = computed<EChartsCoreOption>(() => {
@@ -32,7 +33,7 @@ export class DailyGraph {
       },
       xAxis: {
         type: 'category',
-        data: ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23']
+        data: hour?.time.slice(this.index() * 24, (this.index() * 24) + 24)
       },
       yAxis: [
         {
@@ -69,28 +70,28 @@ export class DailyGraph {
           name: 'Temperature',
           type: 'line',
           smooth: true,
-          data: hour?.temperature_2m ?? [],
+          data: hour?.temperature_2m.slice(this.index() * 24, (this.index() * 24) + 24),
           yAxisIndex: 0
         },
         {
           name: 'Precipitation Probability',
           type: 'line',
           smooth: true,
-          data: hour?.precipitation_probability ?? [],
+          data: hour?.precipitation_probability.slice(this.index() * 24, (this.index() * 24) + 24),
           yAxisIndex: 1
         },
         {
           name: 'Cloud Cover',
           type: 'line',
           smooth: true,
-          data: hour?.cloud_cover ?? [],
+          data: hour?.cloud_cover.slice(this.index() * 24, (this.index() * 24) + 24),
           yAxisIndex: 1
         },
         {
           name: 'Rain',
           type: 'line',
           smooth: true,
-          data: hour?.rain ?? [],
+          data: hour?.rain.slice(this.index() * 24, (this.index() * 24) + 24),
           yAxisIndex: 2
         },
       ]

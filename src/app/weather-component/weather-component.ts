@@ -49,22 +49,9 @@ export class WeatherComponent {
 
   receiveIndex(evt: number) {
     this.index = evt
-    console.log(`event received: ${evt}`)
   }
 
   days = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-
-  formatTime(isoDate: string): string {
-    return isoDate.slice(11, 16)
-  }
-
-  formatDateTime(isoDate?: string): string {
-    if (!isoDate) {
-      return ''
-    }
-
-    return `${isoDate.slice(8, 10)}/${isoDate.slice(5, 7)}/${isoDate.slice(0, 4)} ${isoDate.slice(11, 16)}`
-  }
 
   weatherCodeMap: Record<string, string> = {
     "0": "Clear sky",
@@ -96,5 +83,16 @@ export class WeatherComponent {
     "96": "Thunderstorm with hail",
     "97": "Heavy thunderstorm",
     "99": "Thunderstorm with hail"
+  }
+  
+  formatTime(isoDate: string): string {
+    return isoDate.slice(11, 16)
+  }
+
+  formatDateTime(isoDate?: string): string {
+    if (!isoDate) {
+      return ''
+    }
+    return `${isoDate.slice(8, 10)}/${isoDate.slice(5, 7)}/${isoDate.slice(0, 4)} ${isoDate.slice(11, 16)}`
   }
 }
