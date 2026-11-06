@@ -1,3 +1,31 @@
+#p-title {
+    font-family: 'Google Sans Flex', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+header {
+    font-family: 'Google Sans Code', sans-serif;
+    background-color: black;
+    color: white;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    z-index: 10;
+}
+
+#header-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-inline: 60px;
+}
+
 .maindiv {
     display: flex;
     justify-content: center;
@@ -26,6 +54,10 @@ h4 {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
+}
+
+.box-header {
+    margin-top: 3em;
 }
 
 #modal-button {
