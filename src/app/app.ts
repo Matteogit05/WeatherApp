@@ -8,9 +8,11 @@ import { WeatherResponse } from './models/weather-model';
 import { WeatherComponent } from './weather-component/weather-component';
 import { Coordinate } from './models/coordinate-model';
 import { StorageService } from './services/storage-service';
+import { Form } from './form/form';
+import { MatDialog } from '@angular/material/dialog'
 
 @Component({
-  imports: [WeatherComponent, FormRoot, FormField],
+  imports: [WeatherComponent],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
@@ -18,28 +20,14 @@ import { StorageService } from './services/storage-service';
 export class App {
   protected readonly title = signal('WeatherApp');
   sessionStorage = inject(StorageService)
+  modal = inject(MatDialog)
 
   now: Date = new Date()
 
   la = computed(() => this.sessionStorage.coordinates().latitude)
   lo = computed(() => this.sessionStorage.coordinates().longitude)
 
-  readonly model = signal<Coordinate>({
-    latitude: this.la(),
-    longitude: this.lo()
-  })
-
-  coordForm = form(this.model, path => {
-    required(path.latitude, {message: 'Latitude is required'})
-    required(path.longitude, {message: 'Longitude is required'})
-  }, {
-    submission: {
-      action: async frm => {
-        this.sessionStorage.coordinates.set({
-          latitude: frm().value().latitude,
-          longitude: frm().value().longitude
-        })
-      }
-    }
-  })
+  openModal() {
+    const modalRef = this.modal.open(Form)
+  }
 }

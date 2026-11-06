@@ -1,0 +1,39 @@
+label, input {
+    display: block;
+    margin-top: .6em;
+    font-size: 15px;
+}
+
+input {
+    padding: .4em;
+    outline: none;
+    border: 2px solid rgb(176, 176, 176);
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+input:focus {
+    transform: scale(1.02);
+    border: 2px solid rgb(97, 184, 250);
+}
+
+#modal-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+    height: 290px;
+}
+
+button {
+    margin-top: 1em;
+    font-size: 15px;
+}
+
+#close-button {
+    margin-left: 4.5em;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+}

@@ -69,6 +69,7 @@ export class DailyGraph {
         {
           name: 'Temperature',
           type: 'line',
+          color: 'orange',
           smooth: true,
           data: hour?.temperature_2m.slice(this.index() * 24, (this.index() * 24) + 24),
           yAxisIndex: 0
@@ -76,6 +77,7 @@ export class DailyGraph {
         {
           name: 'Precipitation Probability',
           type: 'line',
+          color: 'purple',
           smooth: true,
           data: hour?.precipitation_probability.slice(this.index() * 24, (this.index() * 24) + 24),
           yAxisIndex: 1
@@ -83,6 +85,7 @@ export class DailyGraph {
         {
           name: 'Cloud Cover',
           type: 'line',
+          color: 'green',
           smooth: true,
           data: hour?.cloud_cover.slice(this.index() * 24, (this.index() * 24) + 24),
           yAxisIndex: 1
@@ -90,6 +93,7 @@ export class DailyGraph {
         {
           name: 'Rain',
           type: 'line',
+          color: 'blue',
           smooth: true,
           data: hour?.rain.slice(this.index() * 24, (this.index() * 24) + 24),
           yAxisIndex: 2

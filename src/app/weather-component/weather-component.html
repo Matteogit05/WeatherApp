@@ -19,7 +19,12 @@
             <p class="max-min"><img id="arrow-icon-down" src="/down.png" />{{ minTemperature()[index] }} °C</p>
         </div>
         <div class="box">
-            <p id="prec-prob">{{ precProb()[index] }} % <img id="raindrop" src="/raindrop.png"></p>
+            @if (precProb()[index] == null) {
+                <p id="prec-prob">N/A <img id="raindrop" src="/raindrop.png"></p>
+            }
+            @else {
+                <p id="prec-prob">{{ precProb()[index] }} % <img id="raindrop" src="/raindrop.png"></p>
+            }
             <p class="rise-set">{{ formatTime(sunrise()[index]) }} <img class="rise-set-icon" src="/sunrise.png"></p>
             <p class="rise-set">{{ formatTime(sunset()[index]) }} <img class="rise-set-icon" src="/sunset.png"></p>
         </div>
@@ -28,7 +33,7 @@
 
 <app-daily-graph id="graph" [weatherData]="response.value()" [index]="index" />
 
-<h3 class="inter-label">Next 7 days</h3>
+<h3 class="inter-label">Next 15 days</h3>
 
 <div id="card-flex-div">
     @if (response.isLoading()) {

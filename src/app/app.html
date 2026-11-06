@@ -12,21 +12,5 @@
 </div>
 
 <div class="maindiv">
-    <form [formRoot]="coordForm">
-        <label for="latitude">Latitude:</label>
-        <input type="number" id="latitude" [formField]="coordForm.latitude">
-        @if (coordForm.latitude().touched()){
-            @for (er of coordForm.latitude().errors(); track er.kind) {
-                <p class="error-message">{{ er.message }}</p>
-            }
-        }
-        <label for="longitude">Longitude:</label>
-        <input type="number" id="longitude" [formField]="coordForm.longitude">
-        @if (coordForm.longitude().touched()){
-            @for (er of coordForm.longitude().errors(); track er.kind) {
-                <p class="error-message">{{ er.message }}</p>
-            }
-        }
-        <button type="submit">Submit</button>
-    </form>
+    <button id="modal-button" (click)="openModal()">Insert coordinates</button>
 </div>

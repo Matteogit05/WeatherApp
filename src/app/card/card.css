@@ -4,7 +4,7 @@
     width: 170px;
     margin-left: 1.5em;
     margin-right: 1.5em;
-    background-color: rgb(210, 238, 245);
+    background-color: rgb(185, 234, 247);
     transition: 0.2s;
 }
 
@@ -13,5 +13,5 @@
 }
 
 #card-div:active {
-    border: 2px solid blue;
+    border: 2px solid rgb(33, 150, 243);
 }
