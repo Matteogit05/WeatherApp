@@ -1,17 +1,23 @@
+:host {
+    display: block;
+    flex: 0 0 calc((100% - (16px * 6)) / 7);
+    scroll-snap-align: start;
+}
+
 #card-div {
     border: 2px solid rgb(175, 174, 174);
     border-radius: 10px;
-    width: 170px;
-    margin-left: 1.5em;
-    margin-right: 1.5em;
+    width: 100%;
     background-color: rgb(185, 234, 247);
     transition: 0.2s;
+    box-sizing: border-box;
+    cursor: pointer;
 }
 
 #card-div:hover {
-    transform: scale(1.02);
+    background-color: rgb(150, 210, 230);
 }
 
 #card-div:active {
-    border: 2px solid blue;
+    border: 3px solid blue;
 }

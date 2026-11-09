@@ -9,7 +9,7 @@
     <p id="coordinates">Coordinates: {{ lat() }}, {{ lon() }}</p>
 
     <p id="current-temperature">{{ currentTemperature() }} °C</p>
-    <p id="current-wc">{{ weatherCodeMap[weatherCode()[0]] }}</p>
+    <p id="current-wc">{{ weatherCodeMap[currentWeatherCode()] }}</p>
 
     <p id="date"><strong>{{ formatDateTime(date()[index]) }} forecast</strong></p>
     <div class="box-container">
@@ -35,7 +35,10 @@
 
 <h3 class="inter-label">Next 15 days</h3>
 
-<div id="card-flex-div">
+<div class="carousel-wrapper">
+    <button class="nav-btn" (click)="scrollCarousel(-1)" [disabled]="!canScrollLeft()">&#10094;</button>
+
+    <div id="card-flex-div" #carouselContainer (scroll)="checkScroll()">
     @if (response.isLoading()) {
         <p>Data is loading, hold...</p>
     }
@@ -47,4 +50,6 @@
             <app-card [weatherData]="response.value()" [index]="d" (broadcaster)="receiveIndex($event)" />
         }
     }
+    </div>
+    <button class="nav-btn" (click)="scrollCarousel(1)" [disabled]="!canScrollRight()">&#10095;</button>
 </div>

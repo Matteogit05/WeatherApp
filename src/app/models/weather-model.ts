@@ -18,6 +18,7 @@ export interface WeatherResponse{
   }
   current: {
     temperature_2m: number,
-    time: string
+    time: string,
+    weather_code: number
   }
 }

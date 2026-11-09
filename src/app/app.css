@@ -71,8 +71,9 @@ h4 {
     border: none;
     border-radius: 15px;
     transition: 0.4s;
+    cursor: pointer;
 }
 
 #modal-button:hover {
-    transform: scale(1.02);
+    background-color: rgb(29, 131, 214);
 }

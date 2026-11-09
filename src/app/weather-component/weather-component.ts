@@ -1,5 +1,5 @@
 import { httpResource, HttpResourceRef } from '@angular/common/http';
-import { Component, input, signal, inject, computed, InputSignal } from '@angular/core';
+import { Component, input, signal, inject, computed, InputSignal, ElementRef, viewChild } from '@angular/core';
 import { WeatherResponse } from '../models/weather-model';
 import { WeatherService } from '../services/weather-service';
 import { DailyGraph } from '../daily-graph/daily-graph';
@@ -15,12 +15,19 @@ export class WeatherComponent {
   lat = input.required<number>()
   lon = input.required<number>()
   index = 0
+
+  carousel = viewChild<ElementRef<HTMLDivElement>>('carouselContainer')
+  canScrollLeft = signal(false)
+  canScrollRight = signal(true)
   
   weatherService = inject(WeatherService)
   response = this.weatherService.getData(this.lat, this.lon)
 
   weatherCode = computed(() => {
     return this.response.value()!.daily.weather_code
+  })
+  currentWeatherCode = computed(() => {
+    return this.response.value()!.current.weather_code
   })
   currentTemperature = computed(() => {
     return this.response.value()!.current.temperature_2m
@@ -47,11 +54,37 @@ export class WeatherComponent {
     return this.response.value()!.daily.time
   })
 
+  days = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
   receiveIndex(evt: number) {
     this.index = evt
   }
 
-  days = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+  scrollCarousel(direction: number) {
+    const container = this.carousel()?.nativeElement
+    if (!container) return
+
+    const cardElement = container.querySelector('app-card') as HTMLElement
+    if (!cardElement) return
+
+    const cardWidth = cardElement.offsetWidth
+    const gap = 16
+    const scrollAmount = (cardWidth + gap) * 3 * direction
+
+    container.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    })
+  }
+
+  checkScroll() {
+    const container = this.carousel()?.nativeElement
+    if (!container) return
+
+    this.canScrollLeft.set(container.scrollLeft > 0)
+    const maxScroll = container.scrollWidth - container.clientWidth
+    this.canScrollRight.set(Math.ceil(container.scrollLeft) < maxScroll)
+  }
 
   weatherCodeMap: Record<string, string> = {
     "0": "Clear sky",
