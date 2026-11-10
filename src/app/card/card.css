@@ -21,3 +21,7 @@
 #card-div:active {
     border: 3px solid blue;
 }
+
+#week-date {
+    font-size: 18px;
+}

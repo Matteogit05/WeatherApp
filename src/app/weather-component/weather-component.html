@@ -5,28 +5,33 @@
     <p>Error</p>
 }
 @else if (response.value()) {
-    <h4 id="main-par">Today's weather forecast, {{ formatTime(currentTime()) }}</h4>
-    <p id="coordinates">Coordinates: {{ lat() }}, {{ lon() }}</p>
+    <div class="main-section-container">
+        <div class="main-section-box">
+            <h4 id="main-par">Today's weather forecast, {{ formatTime(currentTime()) }}</h4>
+            <p id="coordinates">Coordinates: {{ lat() }}, {{ lon() }}</p>
 
-    <p id="current-temperature">{{ currentTemperature() }} °C</p>
-    <p id="current-wc">{{ weatherCodeMap[currentWeatherCode()] }}</p>
-
-    <p id="date"><strong>{{ formatDateTime(date()[index]) }} forecast</strong></p>
-    <div class="box-container">
-        <div class="box">
-            <p id="wc">{{ weatherCodeMap[weatherCode()[index]] }}</p>
-            <p class="max-min" id="max"><img id="arrow-icon-up" src="/caret-arrow-up.png" />{{ maxTemperature()[index] }} °C</p>
-            <p class="max-min"><img id="arrow-icon-down" src="/down.png" />{{ minTemperature()[index] }} °C</p>
+            <p id="current-temperature">{{ currentTemperature() }} °C</p>
+            <p id="current-wc">{{ weatherCodeMap[currentWeatherCode()] }}</p>
         </div>
-        <div class="box">
-            @if (precProb()[index] == null) {
-                <p id="prec-prob">N/A <img id="raindrop" src="/raindrop.png"></p>
-            }
-            @else {
-                <p id="prec-prob">{{ precProb()[index] }} % <img id="raindrop" src="/raindrop.png"></p>
-            }
-            <p class="rise-set">{{ formatTime(sunrise()[index]) }} <img class="rise-set-icon" src="/sunrise.png"></p>
-            <p class="rise-set">{{ formatTime(sunset()[index]) }} <img class="rise-set-icon" src="/sunset.png"></p>
+        <div class="main-section-box">
+            <p id="date"><strong>{{ formatDateTime(date()[index]) }} forecast</strong></p>
+            <div class="box-container">
+                <div class="box">
+                    <p id="wc">{{ weatherCodeMap[weatherCode()[index]] }}</p>
+                    <p class="max-min" id="max"><img id="arrow-icon-up" src="/caret-arrow-up.png" />{{ maxTemperature()[index] }} °C</p>
+                    <p class="max-min"><img id="arrow-icon-down" src="/down.png" />{{ minTemperature()[index] }} °C</p>
+                </div>
+                <div class="box">
+                    @if (precProb()[index] == null) {
+                        <p id="prec-prob">N/A <img id="raindrop" src="/raindrop.png"></p>
+                    }
+                    @else {
+                        <p id="prec-prob">{{ precProb()[index] }} % <img id="raindrop" src="/raindrop.png"></p>
+                    }
+                    <p class="rise-set">{{ formatTime(sunrise()[index]) }} <img class="rise-set-icon" src="/sunrise.png"></p>
+                    <p class="rise-set">{{ formatTime(sunset()[index]) }} <img class="rise-set-icon" src="/sunset.png"></p>
+                </div>
+            </div>
         </div>
     </div>
 }

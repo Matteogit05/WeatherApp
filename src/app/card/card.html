@@ -1,6 +1,6 @@
 @if (weatherData()?.daily) {
     <div id="card-div" (click)="onClick()">
-        <h3>{{ weatherCode() }}</h3>
+        <p><strong>{{ weatherCode() }}</strong></p>
         @if (precProb() == null) {
             <p>N/A</p>
         }
@@ -10,5 +10,5 @@
         <p>{{ maxTemperature() }} °C, {{ minTemperature() }} °C</p>
     </div>
 
-    <p>{{ weekDate() | date:'dd/MM' }}</p>
+    <p id="week-date"><strong>{{ weekDate() | date:'dd/MM' }}</strong></p>
 }
