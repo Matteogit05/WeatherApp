@@ -11,4 +11,5 @@
     </div>
 
     <p id="week-date"><strong>{{ weekDate() | date:'dd/MM' }}</strong></p>
+    <a [routerLink]="['detail', index()]"><button>See more</button></a>
 }

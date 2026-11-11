@@ -1,9 +1,10 @@
 import { Component, input, computed, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { WeatherResponse } from '../models/weather-model';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink],
   selector: 'app-card',
   styleUrl: './card.css',
   templateUrl: './card.html',

@@ -4,24 +4,9 @@
             <p id="p-title">WeatherApp</p>
         </div>
         <div class="box-hd">
-            <p>Location: {{ la() }}, {{ lo() }}</p>
+            <p>Location: {{ latitude() }}, {{ longitude() }}</p>
         </div>
     </div>
 </header>
 
-<div id="container-header">
-    <div class="box-header">
-        <h1>Welcome</h1>
-    </div>
-    <div class="box-header">
-        <img id="hero-image" src="/undraw_weather-app_4cp0.svg">
-    </div>
-</div>
-
-<div class="maindiv">
-    <app-weather-component [lat]="la()" [lon]="lo()" />
-</div>
-
-<div class="maindiv">
-    <button id="modal-button" (click)="openModal()">Insert coordinates</button>
-</div>
+<router-outlet />

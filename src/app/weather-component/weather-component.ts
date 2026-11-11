@@ -23,36 +23,16 @@ export class WeatherComponent {
   weatherService = inject(WeatherService)
   response = this.weatherService.getData(this.lat, this.lon)
 
-  weatherCode = computed(() => {
-    return this.response.value()!.daily.weather_code
-  })
-  currentWeatherCode = computed(() => {
-    return this.response.value()!.current.weather_code
-  })
-  currentTemperature = computed(() => {
-    return this.response.value()!.current.temperature_2m
-  })
-  maxTemperature = computed(() => {
-    return this.response.value()!.daily.temperature_2m_max
-  })
-  minTemperature = computed(() => {
-    return this.response.value()!.daily.temperature_2m_min
-  })
-  precProb = computed(() => {
-    return this.response.value()!.daily.precipitation_probability_max
-  })
-  sunrise = computed(() => {
-    return this.response.value()!.daily.sunrise
-  })
-  sunset = computed(() => {
-    return this.response.value()!.daily.sunset
-  })
-  currentTime = computed(() => {
-    return this.response.value()!.current.time
-  })
-  date = computed(() => {
-    return this.response.value()!.daily.time
-  })
+  weatherCode = computed(() => this.response.value()!.daily.weather_code)
+  currentWeatherCode = computed(() => this.response.value()!.current.weather_code)
+  currentTemperature = computed(() => this.response.value()!.current.temperature_2m)
+  maxTemperature = computed(() => this.response.value()!.daily.temperature_2m_max)
+  minTemperature = computed(() => this.response.value()!.daily.temperature_2m_min)
+  precProb = computed(() => this.response.value()!.daily.precipitation_probability_max)
+  sunrise = computed(() => this.response.value()!.daily.sunrise)
+  sunset = computed(() => this.response.value()!.daily.sunset)
+  currentTime = computed(() => this.response.value()!.current.time)
+  date = computed(() => this.response.value()!.daily.time)
 
   days = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 

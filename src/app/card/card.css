@@ -25,3 +25,18 @@
 #week-date {
     font-size: 18px;
 }
+
+button {
+    cursor: pointer;
+    background-color: rgb(186, 162, 121);
+    border: none;
+    height: 25px;
+    color: white;
+    border-radius: 5px;
+    transition: 0.2s;
+    margin-bottom: 2em;
+}
+
+button:hover {
+    background-color: rgb(221, 185, 123);
+}

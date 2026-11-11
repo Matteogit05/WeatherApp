@@ -12,22 +12,14 @@ import { Form } from './form/form';
 import { MatDialog } from '@angular/material/dialog'
 
 @Component({
-  imports: [WeatherComponent],
+  imports: [RouterOutlet],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('WeatherApp');
-  sessionStorage = inject(StorageService)
-  modal = inject(MatDialog)
+  private sessionStorage = inject(StorageService)
 
-  now: Date = new Date()
-
-  la = computed(() => this.sessionStorage.coordinates().latitude)
-  lo = computed(() => this.sessionStorage.coordinates().longitude)
-
-  openModal() {
-    const modalRef = this.modal.open(Form)
-  }
+  latitude = computed(() => this.sessionStorage.coordinates().latitude)
+  longitude = computed(() => this.sessionStorage.coordinates().longitude)
 }
