@@ -7,14 +7,14 @@
 @else if (response.value()) {
     <div class="main-section-container">
         <div class="main-section-box">
-            <h4 id="main-par">Today's weather forecast, {{ formatTime(currentTime()) }}</h4>
+            <h4 id="main-par">Today's weather forecast, {{ formatter.formatTime(currentTime()) }}</h4>
             <p id="coordinates">Coordinates: {{ lat() }}, {{ lon() }}</p>
 
             <p id="current-temperature">{{ currentTemperature() }} °C</p>
             <p id="current-wc">{{ weatherCodeMap[currentWeatherCode()] }}</p>
         </div>
         <div class="main-section-box">
-            <p id="date"><strong>{{ formatDateTime(date()[index]) }} forecast</strong></p>
+            <p id="date"><strong>{{ formatter.formatDateTime(date()[index]) }} forecast</strong></p>
             <div class="box-container">
                 <div class="box">
                     <p id="wc">{{ weatherCodeMap[weatherCode()[index]] }}</p>
@@ -28,8 +28,8 @@
                     @else {
                         <p id="prec-prob">{{ precProb()[index] }} % <img id="raindrop" src="/raindrop.png"></p>
                     }
-                    <p class="rise-set">{{ formatTime(sunrise()[index]) }} <img class="rise-set-icon" src="/sunrise.png"></p>
-                    <p class="rise-set">{{ formatTime(sunset()[index]) }} <img class="rise-set-icon" src="/sunset.png"></p>
+                    <p class="rise-set">{{ formatter.formatTime(sunrise()[index]) }} <img class="rise-set-icon" src="/sunrise.png"></p>
+                    <p class="rise-set">{{ formatter.formatTime(sunset()[index]) }} <img class="rise-set-icon" src="/sunset.png"></p>
                 </div>
             </div>
         </div>

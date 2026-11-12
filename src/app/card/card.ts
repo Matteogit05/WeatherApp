@@ -15,21 +15,11 @@ export class Card {
 
   broadcaster = output<any>()
 
-  weatherCode = computed(() => {
-    return this.weatherCodeMap[this.weatherData()!.daily.weather_code[this.index()]]
-  })
-  precProb = computed(() => {
-    return this.weatherData()!.daily.precipitation_probability_max[this.index()]
-  })
-  maxTemperature = computed(() => {
-    return this.weatherData()!.daily.temperature_2m_max[this.index()]
-  })
-  minTemperature = computed(() => {
-    return this.weatherData()!.daily.temperature_2m_min[this.index()]
-  })
-  weekDate = computed(() => {
-    return this.weatherData()!.daily.time[this.index()]
-  })
+  weatherCode = computed(() => this.weatherCodeMap[this.weatherData()!.daily.weather_code[this.index()]])
+  precProb = computed(() => this.weatherData()!.daily.precipitation_probability_max[this.index()])
+  maxTemperature = computed(() => this.weatherData()!.daily.temperature_2m_max[this.index()])
+  minTemperature = computed(() => this.weatherData()!.daily.temperature_2m_min[this.index()])
+  weekDate = computed(() => this.weatherData()!.daily.time[this.index()])
 
   onClick(){
     this.broadcaster.emit(this.index())
