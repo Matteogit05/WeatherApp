@@ -11,13 +11,13 @@
             <p id="coordinates">Coordinates: {{ lat() }}, {{ lon() }}</p>
 
             <p id="current-temperature">{{ currentTemperature() }} °C</p>
-            <p id="current-wc">{{ weatherCodeMap[currentWeatherCode()] }}</p>
+            <p id="current-wc">{{ currentWeatherCode() }}</p>
         </div>
         <div class="main-section-box">
             <p id="date"><strong>{{ formatter.formatDateTime(date()[index]) }} forecast</strong></p>
             <div class="box-container">
                 <div class="box">
-                    <p id="wc">{{ weatherCodeMap[weatherCode()[index]] }}</p>
+                    <p id="wc">{{ weatherCode() }}</p>
                     <p class="max-min" id="max"><img id="arrow-icon-up" src="/caret-arrow-up.png" />{{ maxTemperature()[index] }} °C</p>
                     <p class="max-min"><img id="arrow-icon-down" src="/down.png" />{{ minTemperature()[index] }} °C</p>
                 </div>

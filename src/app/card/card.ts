@@ -1,7 +1,8 @@
-import { Component, input, computed, output } from '@angular/core';
+import { Component, input, computed, output, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { WeatherResponse } from '../models/weather-model';
 import { RouterLink } from '@angular/router';
+import { WeatherCodeMapper } from '../services/wc-mapper';
 
 @Component({
   imports: [DatePipe, RouterLink],
@@ -15,7 +16,9 @@ export class Card {
 
   broadcaster = output<any>()
 
-  weatherCode = computed(() => this.weatherCodeMap[this.weatherData()!.daily.weather_code[this.index()]])
+  weatherCodeMapper = inject(WeatherCodeMapper)
+
+  weatherCode = computed(() => this.weatherCodeMapper.getWeatherCode(this.weatherData()!.daily.weather_code[this.index()]))
   precProb = computed(() => this.weatherData()!.daily.precipitation_probability_max[this.index()])
   maxTemperature = computed(() => this.weatherData()!.daily.temperature_2m_max[this.index()])
   minTemperature = computed(() => this.weatherData()!.daily.temperature_2m_min[this.index()])
@@ -24,37 +27,5 @@ export class Card {
   onClick(){
     this.broadcaster.emit(this.index())
     console.log('event emitted')
-  }
-
-  weatherCodeMap: Record<string, string> = {
-    "0": "Clear sky",
-    "1": "Mainly clear",
-    "2": "Partly cloudy",
-    "3": "Overcast",
-    "45": "Fog",
-    "48": "Depositing rime fog",
-    "51": "Light drizzle",
-    "53": "Moderate drizzle",
-    "55": "Dense drizzle",
-    "56": "Freezing drizzle",
-    "57": "Freezing drizzle",
-    "61": "Slight rain",
-    "63": "Moderate rain",
-    "65": "Heavy rain",
-    "66": "Freezing rain",
-    "67": "Freezing rain",
-    "71": "Slight snowfall",
-    "73": "Moderate snowfall",
-    "75": "Heavy snowfall",
-    "77": "Snow grains",
-    "80": "Slight showers",
-    "81": "Moderate showers",
-    "82": "Violent showers",
-    "85": "Snow showers",
-    "86": "Snow showers",
-    "95": "Thunderstorm",
-    "96": "Thunderstorm with hail",
-    "97": "Heavy thunderstorm",
-    "99": "Thunderstorm with hail"
   }
 }

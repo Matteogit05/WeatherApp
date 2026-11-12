@@ -1,1 +1,78 @@
-<h1>Forecast details of {{ time() | date: 'dd-MM' }}</h1>
+<button routerLink="/" class="back-button"><strong>← Home</strong></button>
+
+<h1>Forecast details of {{ time() | date: 'dd/MM' }}</h1>
+
+<h2 id="wc">{{ weatherCode() }}</h2>
+
+<div class="detail-container">
+    <div class="detail-subdiv">
+        <div class="detail-datas">
+            <div class="detail-data">
+                <div class="label">Max temperature</div>
+                <div>{{ maxTemperature() }} °C</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Min temperature</div>
+                <div>{{ minTemperature() }} °C</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Rain sum</div>
+                <div>{{ rainSum() }} mm</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Prec. prob. max</div>
+                <div>{{ precProb() }} %</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Cloud cover</div>
+                <div>{{ cloudCover() }} %</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Relative humidity</div>
+                <div>{{ relativeHumidity() }} %</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Surface pressure</div>
+                <div>{{ surfacePressure() }} hPa</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Visibility</div>
+                <div>{{ visibilityMean() }} km</div>
+            </div>
+        </div>
+        <div class="detail-datas">
+            <div class="detail-data">
+                <div class="label">Wind speed</div>
+                <div>{{ windSpeed() }} km/h</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Wind direction</div>
+                <div>{{ windDirection() }} °</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Sunrise</div>
+                <div>{{ sunrise() | date: 'HH:mm'}}</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Sunset</div>
+                <div>{{ sunset() | date: 'HH:mm'}}</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Daylight</div>
+                <div>{{ daylight() }} h</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Moonrise</div>
+                <div>{{ moonrise() | date: 'HH:mm' }}</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Moonset</div>
+                <div>{{ moonset() | date: 'HH:mm' }}</div>
+            </div>
+            <div class="detail-data">
+                <div class="label">Moon phase</div>
+                <div>{{ moonphase() }}</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,74 @@
+:host {
+    display: block;
+    overflow: hidden;
+}
+
 h1 {
+    margin-top: 5em;
+    margin-left: 2em;
+    font-size: 40px;
+}
+
+#wc {
+    text-align: center;
+    font-size: 25px;
     margin-top: 3em;
+}
+
+.back-button {
+    position: fixed;
+    top: 75px;
+    left: 1.5em;
+    margin-top: 0;
+    font-family: inherit;
+    width: 83px;
+    height: 33px;
+    color: white;
+    border: none;
+    background-color: #2196f3;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.back-button:hover {
+    transform: scale(1.02);
+}
+
+.detail-container {
+    margin-top: 2em;
+    margin-bottom: 5em;
+    display: flex;
+    justify-content: center;
+}
+
+.detail-subdiv {
+    background-color: white;
+    height: 395px;
+    width: 800px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding-inline: 3em;
+}
+
+.detail-datas {
+    width: 250px;
+    margin-top: 2em;
+}
+
+.detail-data {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(184, 184, 184);
+    font-size: 16px;
+    padding-bottom: .2em;
+    margin-top: 1em;
+}
+
+.label {
+    font-weight: 550;
 }

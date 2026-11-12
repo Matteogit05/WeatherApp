@@ -29,17 +29,42 @@ export interface DetailedResponse {
     weather_code: number[],
     temperature_2m_max: number[],
     temperature_2m_min: number[],
-    daylight_duration: number[],
     sunrise: string[],
     sunset: string[],
+    daylight_duration: number,
     moonrise: string[],
     moonset: string[],
-    moonphase: number[],
+    moon_phase: number,
     precipitation_probability_max: number[],
-    wind_speed_10m_max: number[],
+    rain_sum: number,
     wind_direction_10m_dominant: number[],
-    relative_humidity_2m_max: number[],
-    surface_pressure_max: number[],
-    visibilty_mean: number[]
+    visibility_mean: number[],
+    cloud_cover_mean: number[],
+    relative_humidity_2m_mean: number[],
+    surface_pressure_mean: number[],
+    wind_speed_10m_mean: number[]
   }
 }
+
+/*
+  "daily_units": {
+    "time": "iso8601",
+    "weather_code": "wmo code",
+    "rain_sum": "mm",
+    "temperature_2m_max": "°C",
+    "temperature_2m_min": "°C",
+    "daylight_duration": "s",
+    "sunset": "iso8601",
+    "sunrise": "iso8601",
+    "moonrise": "iso8601",
+    "moonset": "iso8601",
+    "moon_phase": "fraction",
+    "precipitation_probability_max": "%",
+    "wind_direction_10m_dominant": "°",
+    "visibility_mean": "m",
+    "cloud_cover_mean": "%",
+    "relative_humidity_2m_mean": "%",
+    "surface_pressure_mean": "hPa",
+    "wind_speed_10m_mean": "km/h"
+  },
+*/

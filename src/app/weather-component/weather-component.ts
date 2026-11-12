@@ -5,6 +5,7 @@ import { WeatherService } from '../services/weather-service';
 import { DailyGraph } from '../daily-graph/daily-graph';
 import { Card } from '../card/card';
 import { Formatter } from '../services/formatter';
+import { WeatherCodeMapper } from '../services/wc-mapper';
 
 @Component({
   imports: [DailyGraph, Card],
@@ -18,6 +19,7 @@ export class WeatherComponent {
   index = 0
 
   formatter = inject(Formatter)
+  weatherCodeMapper = inject(WeatherCodeMapper)
 
   carousel = viewChild<ElementRef<HTMLDivElement>>('carouselContainer')
   canScrollLeft = signal(false)
@@ -26,8 +28,8 @@ export class WeatherComponent {
   weatherService = inject(WeatherService)
   response = this.weatherService.getData(this.lat, this.lon)
 
-  weatherCode = computed(() => this.response.value()!.daily.weather_code)
-  currentWeatherCode = computed(() => this.response.value()!.current.weather_code)
+  weatherCode = computed(() => this.weatherCodeMapper.getWeatherCode(this.response.value()!.daily.weather_code[this.index]))
+  currentWeatherCode = computed(() => this.weatherCodeMapper.getWeatherCode(this.response.value()!.current.weather_code))
   currentTemperature = computed(() => this.response.value()!.current.temperature_2m)
   maxTemperature = computed(() => this.response.value()!.daily.temperature_2m_max)
   minTemperature = computed(() => this.response.value()!.daily.temperature_2m_min)
@@ -67,37 +69,5 @@ export class WeatherComponent {
     this.canScrollLeft.set(container.scrollLeft > 0)
     const maxScroll = container.scrollWidth - container.clientWidth
     this.canScrollRight.set(Math.ceil(container.scrollLeft) < maxScroll)
-  }
-
-  weatherCodeMap: Record<string, string> = {
-    "0": "Clear sky",
-    "1": "Mainly clear",
-    "2": "Partly cloudy",
-    "3": "Overcast",
-    "45": "Fog",
-    "48": "Depositing rime fog",
-    "51": "Light drizzle",
-    "53": "Moderate drizzle",
-    "55": "Dense drizzle",
-    "56": "Freezing drizzle",
-    "57": "Freezing drizzle",
-    "61": "Slight rain",
-    "63": "Moderate rain",
-    "65": "Heavy rain",
-    "66": "Freezing rain",
-    "67": "Freezing rain",
-    "71": "Slight snowfall",
-    "73": "Moderate snowfall",
-    "75": "Heavy snowfall",
-    "77": "Snow grains",
-    "80": "Slight showers",
-    "81": "Moderate showers",
-    "82": "Violent showers",
-    "85": "Snow showers",
-    "86": "Snow showers",
-    "95": "Thunderstorm",
-    "96": "Thunderstorm with hail",
-    "97": "Heavy thunderstorm",
-    "99": "Thunderstorm with hail"
   }
 }

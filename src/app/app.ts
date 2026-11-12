@@ -1,6 +1,6 @@
 import { Component, signal, inject, WritableSignal, computed } from '@angular/core';
 import { form, FormRoot, FormField, required } from '@angular/forms/signals'
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { fetchWeatherApi } from 'openmeteo';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { httpResource } from '@angular/common/http';
@@ -12,7 +12,7 @@ import { Form } from './form/form';
 import { MatDialog } from '@angular/material/dialog'
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

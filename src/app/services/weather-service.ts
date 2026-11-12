@@ -11,7 +11,7 @@ export class WeatherService {
     }
 
     getDetailData(lat: Signal<number>, lon: Signal<number>, date: string) {
-        const res = httpResource<DetailedResponse>(() => `https://api.open-meteo.com/v1/forecast?latitude=${lat()}&longitude=${lon()}&daily=weather_code,temperature_2m_max,temperature_2m_min,daylight_duration,sunset,sunrise,moonrise,moonset,moon_phase,precipitation_probability_max,wind_speed_10m_max,wind_direction_10m_dominant,relative_humidity_2m_max,surface_pressure_max,visibility_mean&models=ecmwf_ifs&timezone=auto&start_date=${date}&end_date=${date}`)
+        const res = httpResource<DetailedResponse>(() => `https://api.open-meteo.com/v1/forecast?latitude=${lat()}&longitude=${lon()}&daily=weather_code,daylight_duration,temperature_2m_max,rain_sum,temperature_2m_min,sunset,sunrise,moonrise,moonset,moon_phase,precipitation_probability_max,wind_direction_10m_dominant,visibility_mean,cloud_cover_mean,relative_humidity_2m_mean,surface_pressure_mean,wind_speed_10m_mean&models=ecmwf_ifs&timezone=auto&end_date=${date}&start_date=${date}`)
 
         return res
     }
