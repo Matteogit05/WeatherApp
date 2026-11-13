@@ -5,7 +5,7 @@
 <h2 id="wc">{{ weatherCode() }}</h2>
 
 <div class="detail-container">
-    <div class="detail-subdiv">
+      <div class="detail-subdiv">
         <div class="detail-datas">
             <div class="detail-data">
                 <div class="label">Max temperature</div>
@@ -24,30 +24,30 @@
                 <div>{{ precProb() }} %</div>
             </div>
             <div class="detail-data">
-                <div class="label">Cloud cover</div>
+                <div class="label" matTooltip="Mean value of this day">Cloud cover</div>
                 <div>{{ cloudCover() }} %</div>
             </div>
             <div class="detail-data">
-                <div class="label">Relative humidity</div>
+                <div class="label" matTooltip="Mean value of this day">Relative humidity</div>
                 <div>{{ relativeHumidity() }} %</div>
             </div>
             <div class="detail-data">
-                <div class="label">Surface pressure</div>
+                <div class="label" matTooltip="Mean value of this day">Surface pressure</div>
                 <div>{{ surfacePressure() }} hPa</div>
             </div>
             <div class="detail-data">
-                <div class="label">Visibility</div>
+                <div class="label" matTooltip="Mean value of this day">Visibility</div>
                 <div>{{ visibilityMean() }} km</div>
             </div>
         </div>
         <div class="detail-datas">
             <div class="detail-data">
-                <div class="label">Wind speed</div>
+                <div class="label" matTooltip="Mean value of this day">Wind speed</div>
                 <div>{{ windSpeed() }} km/h</div>
             </div>
             <div class="detail-data">
-                <div class="label">Wind direction</div>
-                <div>{{ windDirection() }} °</div>
+                <div class="label" matTooltip="Dominant value of this day">Wind direction</div>
+                <div>{{ windDirection() }}</div>
             </div>
             <div class="detail-data">
                 <div class="label">Sunrise</div>
@@ -59,7 +59,7 @@
             </div>
             <div class="detail-data">
                 <div class="label">Daylight</div>
-                <div>{{ daylight() }} h</div>
+                <div>{{ daylight() }}</div>
             </div>
             <div class="detail-data">
                 <div class="label">Moonrise</div>
@@ -70,9 +70,13 @@
                 <div>{{ moonset() | date: 'HH:mm' }}</div>
             </div>
             <div class="detail-data">
-                <div class="label">Moon phase</div>
-                <div>{{ moonphase() }}</div>
+              <div class="label">Moon phase</div>
+              <div>{{ moonPhase() }}</div>
             </div>
         </div>
     </div>
+</div>
+
+<div id="container-img">
+  <img src="undraw_a-day-at-the-park_9w8d.svg" alt="detail-page-img">
 </div>

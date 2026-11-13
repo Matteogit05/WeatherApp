@@ -49,8 +49,7 @@ h1 {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
-    padding-inline: 3em;
+    justify-content: space-around;
 }
 
 .detail-datas {
@@ -71,4 +70,15 @@ h1 {
 
 .label {
     font-weight: 550;
+}
+
+#container-img {
+  display: flex;
+  justify-content: center;
+}
+
+#container-img img {
+  height: 400px;
+  width: 400px;
+  margin-bottom: 10em;
 }

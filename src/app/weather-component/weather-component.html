@@ -14,29 +14,29 @@
             <p id="current-wc">{{ currentWeatherCode() }}</p>
         </div>
         <div class="main-section-box">
-            <p id="date"><strong>{{ formatter.formatDateTime(date()[index]) }} forecast</strong></p>
+            <p id="date"><strong>{{ formatter.formatDateTime(date()[index()]) }} forecast</strong></p>
             <div class="box-container">
                 <div class="box">
                     <p id="wc">{{ weatherCode() }}</p>
-                    <p class="max-min" id="max"><img id="arrow-icon-up" src="/caret-arrow-up.png" />{{ maxTemperature()[index] }} °C</p>
-                    <p class="max-min"><img id="arrow-icon-down" src="/down.png" />{{ minTemperature()[index] }} °C</p>
+                    <p class="max-min" id="max"><img id="arrow-icon-up" src="/caret-arrow-up.png" />{{ maxTemperature()[index()] }} °C</p>
+                    <p class="max-min"><img id="arrow-icon-down" src="/down.png" />{{ minTemperature()[index()] }} °C</p>
                 </div>
                 <div class="box">
-                    @if (precProb()[index] == null) {
+                    @if (precProb()[index()] == null) {
                         <p id="prec-prob">N/A <img id="raindrop" src="/raindrop.png"></p>
                     }
                     @else {
-                        <p id="prec-prob">{{ precProb()[index] }} % <img id="raindrop" src="/raindrop.png"></p>
+                        <p id="prec-prob">{{ precProb()[index()] }} % <img id="raindrop" src="/raindrop.png"></p>
                     }
-                    <p class="rise-set">{{ formatter.formatTime(sunrise()[index]) }} <img class="rise-set-icon" src="/sunrise.png"></p>
-                    <p class="rise-set">{{ formatter.formatTime(sunset()[index]) }} <img class="rise-set-icon" src="/sunset.png"></p>
+                    <p class="rise-set">{{ formatter.formatTime(sunrise()[index()]) }} <img class="rise-set-icon" src="/sunrise.png"></p>
+                    <p class="rise-set">{{ formatter.formatTime(sunset()[index()]) }} <img class="rise-set-icon" src="/sunset.png"></p>
                 </div>
             </div>
         </div>
     </div>
 }
 
-<app-daily-graph id="graph" [weatherData]="response.value()" [index]="index" />
+<app-daily-graph id="graph" [weatherData]="response.value()" [index]="index()" />
 
 <h3 class="inter-label">Next 15 days</h3>
 

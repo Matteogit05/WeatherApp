@@ -16,7 +16,7 @@ import { WeatherCodeMapper } from '../services/wc-mapper';
 export class WeatherComponent {
   lat = input.required<number>()
   lon = input.required<number>()
-  index = 0
+  index = signal(0)
 
   formatter = inject(Formatter)
   weatherCodeMapper = inject(WeatherCodeMapper)
@@ -24,11 +24,11 @@ export class WeatherComponent {
   carousel = viewChild<ElementRef<HTMLDivElement>>('carouselContainer')
   canScrollLeft = signal(false)
   canScrollRight = signal(true)
-  
+
   weatherService = inject(WeatherService)
   response = this.weatherService.getData(this.lat, this.lon)
 
-  weatherCode = computed(() => this.weatherCodeMapper.getWeatherCode(this.response.value()!.daily.weather_code[this.index]))
+  weatherCode = computed(() => this.weatherCodeMapper.getWeatherCode(this.response.value()!.daily.weather_code[this.index()]))
   currentWeatherCode = computed(() => this.weatherCodeMapper.getWeatherCode(this.response.value()!.current.weather_code))
   currentTemperature = computed(() => this.response.value()!.current.temperature_2m)
   maxTemperature = computed(() => this.response.value()!.daily.temperature_2m_max)
@@ -42,7 +42,7 @@ export class WeatherComponent {
   days = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
   receiveIndex(evt: number) {
-    this.index = evt
+    this.index.set(evt)
   }
 
   scrollCarousel(direction: number) {
