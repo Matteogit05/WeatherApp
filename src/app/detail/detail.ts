@@ -1,13 +1,14 @@
-import { Component, inject, computed, signal } from '@angular/core';
+import { Component, inject, computed} from '@angular/core';
 import { WeatherService } from '../services/weather-service';
 import { StorageService } from '../services/storage-service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { WeatherCodeMapper } from '../services/wc-mapper';
+import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip'
 
 @Component({
-  imports: [DatePipe, RouterLink, MatTooltipModule],
+  imports: [DatePipe, RouterLink, MatTooltipModule, MatButtonModule],
   selector: 'app-detail',
   styleUrl: './detail.css',
   templateUrl: './detail.html',

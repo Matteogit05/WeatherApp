@@ -1,6 +1,11 @@
-<button routerLink="/" class="back-button"><strong>← Home</strong></button>
-
-<h1>Forecast details of {{ time() | date: 'dd/MM' }}</h1>
+<div class="main-section-div">
+  <div class="main-section-div-box">
+    <button routerLink="/" class="back-button"><strong>← Home</strong></button>
+  </div>
+  <div class="main-section-div-box">
+    <h1>Forecast details of {{ time() | date: 'dd/MM' }}</h1>
+  </div>
+</div>
 
 <h2 id="wc">{{ weatherCode() }}</h2>
 
