@@ -26,14 +26,14 @@ export class DailyGraph {
     const hour = this.weatherData()?.hourly
     return {
       legend: {
-        data: ['Temperature', 'Precipitation Probability', 'Cloud Cover', 'Rain']
+        data: ['Temperature', 'Precipitation Probability', 'Cloud Cover', 'Rain'],
       },
       tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
       },
       xAxis: {
         type: 'category',
-        data: hour?.time.slice(this.index() * 24, (this.index() * 24) + 24)
+        data: hour?.time.slice(this.index() * 24, this.index() * 24 + 24),
       },
       yAxis: [
         {
@@ -41,29 +41,29 @@ export class DailyGraph {
           position: 'left',
           offset: 45,
           axisLabel: {
-            formatter: '{value} °C'
-          }
+            formatter: '{value} °C',
+          },
         },
         {
           type: 'value',
           position: 'left',
           axisLabel: {
-            formatter: '{value} %'
+            formatter: '{value} %',
           },
           min: 0,
-          max: 100
+          max: 100,
         },
         {
           type: 'value',
           position: 'right',
           axisLabel: {
-            formatter: '{value} mm'
+            formatter: '{value} mm',
           },
           min: 0,
-          max: (value: {min: number, max: number}) => {
-            return Math.max(value.max, 5)
-          }
-        }
+          max: (value: { min: number; max: number }) => {
+            return Math.max(value.max, 5);
+          },
+        },
       ],
       series: [
         {
@@ -71,34 +71,34 @@ export class DailyGraph {
           type: 'line',
           color: 'orange',
           smooth: true,
-          data: hour?.temperature_2m.slice(this.index() * 24, (this.index() * 24) + 24),
-          yAxisIndex: 0
+          data: hour?.temperature_2m.slice(this.index() * 24, this.index() * 24 + 24),
+          yAxisIndex: 0,
         },
         {
           name: 'Precipitation Probability',
           type: 'line',
           color: 'purple',
           smooth: true,
-          data: hour?.precipitation_probability.slice(this.index() * 24, (this.index() * 24) + 24),
-          yAxisIndex: 1
+          data: hour?.precipitation_probability.slice(this.index() * 24, this.index() * 24 + 24),
+          yAxisIndex: 1,
         },
         {
           name: 'Cloud Cover',
           type: 'line',
           color: 'green',
           smooth: true,
-          data: hour?.cloud_cover.slice(this.index() * 24, (this.index() * 24) + 24),
-          yAxisIndex: 1
+          data: hour?.cloud_cover.slice(this.index() * 24, this.index() * 24 + 24),
+          yAxisIndex: 1,
         },
         {
           name: 'Rain',
           type: 'line',
-          color: 'blue',
+          color: '#2196f3',
           smooth: true,
-          data: hour?.rain.slice(this.index() * 24, (this.index() * 24) + 24),
-          yAxisIndex: 2
+          data: hour?.rain.slice(this.index() * 24, this.index() * 24 + 24),
+          yAxisIndex: 2,
         },
-      ]
-    }
+      ],
+    };
   })
 }

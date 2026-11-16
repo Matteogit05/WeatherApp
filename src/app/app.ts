@@ -19,7 +19,12 @@ import { MatDialog } from '@angular/material/dialog'
 })
 export class App {
   private sessionStorage = inject(StorageService)
+  private modal = inject(MatDialog)
 
   latitude = computed(() => this.sessionStorage.coordinates().latitude)
   longitude = computed(() => this.sessionStorage.coordinates().longitude)
+
+  openModal() {
+    this.modal.open(Form)
+  }
 }
