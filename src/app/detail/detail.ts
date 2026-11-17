@@ -94,7 +94,7 @@ export class Detail {
       .pipe(
         switchMap(() => this.weatherService.getDetailDataObs(this.lat, this.lon, this.date)),
         tap(() => this.isLoading.set(true)),
-        debounceTime(1000),
+        debounceTime(500),
       )
       .subscribe((value) => {
         this.detailsData.set(value);
