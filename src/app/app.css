@@ -1,5 +1,110 @@
-#maindiv {
+header {
+    font-family: 'Google Sans Code', sans-serif;
+    background-color: black;
+    color: white;
+    height: 60px;
+    width: 100%;
     display: flex;
+    position: fixed;
     justify-content: center;
-    text-align: center;
+    z-index: 10;
+    top: 0;
+}
+
+#header-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-inline: 3em;
+}
+
+#p-title {
+    font-family: 'Google Sans Flex', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    margin: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#edit-coord-icon {
+  height: 20px;
+  width: 20px;
+  margin-top: 3px;
+}
+
+#coord-header {
+  display: inline;
+}
+
+#edit-coord-header {
+  margin-top: -2px;
+  margin-left: 1.5em;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: white;
+  font-family: 'Google Sans Flex', sans-serif;
+  font-size: 15px;
+  height: 35px;
+  width: 35px;
+  border-radius: 7px;
+  transition: 0.2s
+}
+
+#edit-coord-header:hover {
+  transform: scale(1.04)
+}
+
+#box-hd-right {
+  display: flex;
+  align-items: center;
+}
+
+#footer-container {
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-inline: 400px;
+  align-items: center;
+  color: gray;
+  height: 4.5em;
+}
+
+#footer-container a, #footer-container p {
+  color: gray;
+  transition: 0.2s;
+  font-size: 15px;
+}
+
+#footer-container a:hover, #footer-container p:hover {
+  color: #bcbcbc;
+  text-decoration: underline;
+}
+
+#footer-container p {
+  cursor: pointer;
+}
+
+#attribution-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+#attribution {
+  color: gray;
+  font-size: 10px;
+}
+
+#attribution:hover {
+  text-decoration: underline;
 }

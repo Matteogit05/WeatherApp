@@ -1,0 +1,38 @@
+.maindiv {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 70px;
+    margin-left: 1.5em;
+    margin-top: 1.8em;
+}
+
+h4 {
+    font-size: 15px;
+    margin-left: 2.6em;
+}
+
+#hero-image {
+    height: 250px;
+    margin-bottom: 3.5em;
+    margin-right: 8em;
+}
+
+#container-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: #2196f3;
+    color: white;
+    margin-top: 9em;
+    margin-inline: 2em;
+    border-radius: 20px;
+}
+
+.box-header {
+    margin-top: 3em;
+}

@@ -1,0 +1,15 @@
+@if (weatherData()?.daily) {
+    <div id="card-div" (click)="onClick()">
+        <p><strong>{{ weatherCode() }}</strong></p>
+        @if (precProb() == null) {
+            <p>N/A</p>
+        }
+        @else {
+            <p>{{ precProb() }} %</p>
+        }
+        <p>{{ maxTemperature() }} °C, {{ minTemperature() }} °C</p>
+    </div>
+
+    <p id="week-date"><strong>{{ weekDate() | date:'dd/MM' }}</strong></p>
+    <a [routerLink]="['detail', index()]"><button>See more</button></a>
+}

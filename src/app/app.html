@@ -1,7 +1,24 @@
-<h1>Benvenuto</h1>
+<header>
+    <div id="header-container">
+        <div class="box-hd">
+            <p id="p-title"><a routerLink="/">WeatherApp</a></p>
+        </div>
+        <div class="box-hd" id="box-hd-right">
+            <p id="coord-header">Location: {{ latitude() }}, {{ longitude() }}</p>
+            <button id="edit-coord-header" (click)="openModal()"><img id="edit-coord-icon" src="write.png" alt="Edit coords icon"></button>
+        </div>
+    </div>
+</header>
 
-<h4>Meteo di Perugia <strong>{{ now.toLocaleDateString() }}</strong> {{ now.getHours() }}:{{ now.getMinutes() }}</h4>
+<router-outlet />
 
-<div id="maindiv">
-    <app-weather-component [lat]=43.1122 [lon]=12.3888 />
-</div>
+<div id="attribution-container"><a href="https://open-meteo.com" id="attribution">Weather Data by open-meteo.com</a></div>
+<footer>
+  <div id="footer-container">
+    <a class="footer-element" href="https://github.com/MatteoGit05/WeatherApp">GitHub</a>
+    <p class="footer-element" matTooltip="
+      The icons in this app come from Flaticon (flaticon.com).
+      Images come from Undraw (undraw.co).
+    ">Attributions</p>
+  </div>
+</footer>

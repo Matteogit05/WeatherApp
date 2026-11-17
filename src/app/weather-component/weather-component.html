@@ -1,17 +1,60 @@
-@if (rDaily.isLoading()) {
+@if (response.isLoading()) {
     <p>Data is loading, hold...</p>
 }
-@else if (rDaily.error()) {
+@else if (response.error()) {
     <p>Error</p>
 }
-@else if (rDaily.value(); as data) {
-    <p>Current temperature: {{ data.current.temperature_2m }} °C</p>
-    <p>Max: {{ data.daily.temperature_2m_max }} °C  Min: {{ data.daily.temperature_2m_min }} °C</p>
-    <p>Precipitation prob today: {{ data.daily.precipitation_probability_max }}%</p>
-    <p>Sunrise: {{ data.daily.sunrise }}</p>
-    <p>Sunset: {{ data.daily.sunset }}</p>
+@else if (response.value()) {
+    <div class="main-section-container">
+        <div class="main-section-box">
+            <h4 id="main-par">Today's weather forecast, {{ formatter.formatTime(currentTime()) }}</h4>
+            <p id="coordinates">Coordinates: {{ lat() }}, {{ lon() }}</p>
+
+            <p id="current-temperature">{{ currentTemperature() }} °C</p>
+            <p id="current-wc">{{ currentWeatherCode() }}</p>
+        </div>
+        <div class="main-section-box">
+            <p id="date"><strong>{{ formatter.formatDateTime(date()[index()]) }} forecast</strong></p>
+            <div class="box-container">
+                <div class="box">
+                    <p id="wc">{{ weatherCode() }}</p>
+                    <p class="max-min" id="max"><img id="arrow-icon-up" src="/caret-arrow-up.png" />{{ maxTemperature()[index()] }} °C</p>
+                    <p class="max-min"><img id="arrow-icon-down" src="/down.png" />{{ minTemperature()[index()] }} °C</p>
+                </div>
+                <div class="box">
+                    @if (precProb()[index()] == null) {
+                        <p id="prec-prob">N/A <img id="raindrop" src="/raindrop.png"></p>
+                    }
+                    @else {
+                        <p id="prec-prob">{{ precProb()[index()] }} % <img id="raindrop" src="/raindrop.png"></p>
+                    }
+                    <p class="rise-set">{{ formatter.formatTime(sunrise()[index()]) }} <img class="rise-set-icon" src="/sunrise.png"></p>
+                    <p class="rise-set">{{ formatter.formatTime(sunset()[index()]) }} <img class="rise-set-icon" src="/sunset.png"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
-<h3>Oggi</h3>
+<app-daily-graph id="graph" [weatherData]="response.value()" [index]="index()" />
 
-<app-daily-graph [weatherData]="rDaily.value()"/>
+<h3 class="inter-label">Next 15 days</h3>
+
+<div class="carousel-wrapper">
+    <button class="nav-btn" (click)="scrollCarousel(-1)" [disabled]="!canScrollLeft()">&#10094;</button>
+
+    <div id="card-flex-div" #carouselContainer (scroll)="checkScroll()">
+    @if (response.isLoading()) {
+        <p>Data is loading, hold...</p>
+    }
+    @else if (response.error()) {
+        <p>Error</p>
+    }
+    @else if (response.value()) {
+        @for (d of days; track $index) {
+            <app-card [weatherData]="response.value()" [index]="d" (broadcaster)="receiveIndex($event)" />
+        }
+    }
+    </div>
+    <button class="nav-btn" (click)="scrollCarousel(1)" [disabled]="!canScrollRight()">&#10095;</button>
+</div>
