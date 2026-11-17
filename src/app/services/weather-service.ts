@@ -27,9 +27,9 @@ export class WeatherService {
         return res
     }
 
-    getDetailDataObs(lat: Signal<number>, lon: Signal<number>, date: Signal<string | null>): Observable<DetailedResponse> {
+    getDetailDataObs(lat: Signal<number>, lon: Signal<number>): Observable<DetailedResponse> {
       return this.http.get<DetailedResponse>(
-        `https://api.open-meteo.com/v1/forecast?latitude=${lat()}&longitude=${lon()}&daily=weather_code,daylight_duration,temperature_2m_max,rain_sum,temperature_2m_min,sunset,sunrise,moonrise,moonset,moon_phase,precipitation_probability_max,wind_direction_10m_dominant,visibility_mean,cloud_cover_mean,relative_humidity_2m_mean,surface_pressure_mean,wind_speed_10m_mean&models=ecmwf_ifs&timezone=auto&end_date=${date()}&start_date=${date()}`
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat()}&longitude=${lon()}&daily=weather_code,daylight_duration,temperature_2m_max,rain_sum,temperature_2m_min,sunset,sunrise,moonrise,moonset,moon_phase,precipitation_probability_max,wind_direction_10m_dominant,visibility_mean,cloud_cover_mean,relative_humidity_2m_mean,surface_pressure_mean,wind_speed_10m_mean&models=ecmwf_ifs&timezone=auto&forecast_days=15`
       );
     }
 }

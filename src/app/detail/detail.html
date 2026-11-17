@@ -12,6 +12,11 @@
   }
 </div>
 
+<div id="detail-btn-container">
+  <button class="detail-btn" id="detail-btn-left" (click)="previous()" [disabled]="!canGoBack()" >&#10094;</button>
+  <button class="detail-btn" id="detail-btn-right" (click)="next()" [disabled]="!canGoForward()" >&#10095;</button>
+</div>
+
 @if (isLoading()) {
   <div id="wc-skeleton-container"><div class="label-skeleton" id="wc-skeleton"></div></div>
 }
@@ -133,11 +138,21 @@
               </div>
               <div class="detail-data">
                   <div class="label">Moonrise</div>
-                  <div>{{ moonrise() | date: 'HH:mm' }}</div>
+                  @if (moonrise() === null) {
+                    <div>N/A</div>
+                  }
+                  @else {
+                    <div>{{ moonrise() | date: 'HH:mm' }}</div>
+                  }
               </div>
               <div class="detail-data">
                   <div class="label">Moonset</div>
-                  <div>{{ moonset() | date: 'HH:mm' }}</div>
+                  @if (moonset() === null) {
+                    <div>N/A</div>
+                  }
+                  @else {
+                    <div>{{ moonset() | date: 'HH:mm' }}</div>
+                  }
               </div>
               <div class="detail-data">
                 <div class="label">Moon phase</div>
