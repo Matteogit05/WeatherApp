@@ -5,7 +5,8 @@ import { Detail } from './detail/detail';
 export const routes: Routes = [
     {
         path: '',
-        component: Home
+        component: Home,
+        title: 'WeatherApp'
     },
     {
         path: 'detail/:day',

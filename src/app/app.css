@@ -66,3 +66,45 @@ a {
   display: flex;
   align-items: center;
 }
+
+#footer-container {
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-inline: 400px;
+  align-items: center;
+  color: gray;
+  height: 4.5em;
+}
+
+#footer-container a, #footer-container p {
+  color: gray;
+  transition: 0.2s;
+  font-size: 15px;
+}
+
+#footer-container a:hover, #footer-container p:hover {
+  color: #bcbcbc;
+  text-decoration: underline;
+}
+
+#footer-container p {
+  cursor: pointer;
+}
+
+#attribution-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+#attribution {
+  color: gray;
+  font-size: 10px;
+}
+
+#attribution:hover {
+  text-decoration: underline;
+}

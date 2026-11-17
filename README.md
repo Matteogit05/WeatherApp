@@ -8,7 +8,9 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Attributions
 
-The icons in this project come from [Flaticon](https://flaticon.com).
+Weather data offered by [Open Meteo](https://open-meteo.com).
+
+The icons in this project come from [Flaticon](https://flaticon.com), while images from [Undraw](https://undraw.co).
 
 ## Development server
 
