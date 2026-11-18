@@ -31,18 +31,24 @@ export interface DetailedResponse {
     temperature_2m_min: number[],
     sunrise: string[],
     sunset: string[],
-    daylight_duration: number[],
+    daylight_duration: number,
     moonrise: string[],
     moonset: string[],
-    moon_phase: number[],
+    moon_phase: number,
     precipitation_probability_max: number[],
-    rain_sum: number[],
+    rain_sum: number,
     wind_direction_10m_dominant: number[],
     visibility_mean: number[],
     cloud_cover_mean: number[],
     relative_humidity_2m_mean: number[],
     surface_pressure_mean: number[],
     wind_speed_10m_mean: number[]
+  }
+}
+
+export interface Dates {
+  daily: {
+    time: string[]
   }
 }
 

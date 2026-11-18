@@ -80,13 +80,13 @@ a {
 }
 
 #footer-container a, #footer-container p {
-  color: gray;
+  color: #9e9e9e;
   transition: 0.2s;
   font-size: 15px;
 }
 
 #footer-container a:hover, #footer-container p:hover {
-  color: #bcbcbc;
+  color: white;
   text-decoration: underline;
 }
 

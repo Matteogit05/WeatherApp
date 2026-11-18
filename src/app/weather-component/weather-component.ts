@@ -1,9 +1,9 @@
-import { Component, input, signal, inject, computed, ElementRef, viewChild } from '@angular/core';
-import { WeatherService } from '../services/weather-service';
-import { DailyGraph } from '../daily-graph/daily-graph';
-import { Card } from '../card/card';
-import { Formatter } from '../services/formatter';
-import { WeatherCodeMapper } from '../services/wc-mapper';
+import { Component, input, signal, inject, computed, ElementRef, viewChild } from '@angular/core'
+import { WeatherService } from '../services/weather-service'
+import { DailyGraph } from '../daily-graph/daily-graph'
+import { Card } from '../card/card'
+import { Formatter } from '../services/formatter'
+import { WeatherCodeMapper } from '../services/wc-mapper'
 
 @Component({
   imports: [DailyGraph, Card],
@@ -26,8 +26,12 @@ export class WeatherComponent {
   weatherService = inject(WeatherService)
   response = this.weatherService.getData(this.lat, this.lon)
 
-  weatherCode = computed(() => this.weatherCodeMapper.getWeatherCode(this.response.value()!.daily.weather_code[this.index()]))
-  currentWeatherCode = computed(() => this.weatherCodeMapper.getWeatherCode(this.response.value()!.current.weather_code))
+  weatherCode = computed(() =>
+    this.weatherCodeMapper.getWeatherCode(this.response.value()!.daily.weather_code[this.index()]),
+  )
+  currentWeatherCode = computed(() =>
+    this.weatherCodeMapper.getWeatherCode(this.response.value()!.current.weather_code),
+  )
   currentTemperature = computed(() => this.response.value()!.current.temperature_2m)
   maxTemperature = computed(() => this.response.value()!.daily.temperature_2m_max)
   minTemperature = computed(() => this.response.value()!.daily.temperature_2m_min)

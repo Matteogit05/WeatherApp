@@ -6,21 +6,19 @@
 .main-section-div {
   display: flex;
   flex-direction: row;
-  margin-top: 7em;
-  height: 16em;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8em;
+  height: 7em;
   color: white;
   background-color: #2196f3;
-  margin-left: 2em;
-  margin-right: 2em;
+  margin-inline: 2em;
+  padding-inline: 3em;
   border-radius: 15px;
 }
 
-.main-section-div-box {
-  margin-inline: 1em;
-}
-
 .back-button {
-  margin-top: 1.1em;
+  margin-left: -.5em;
   color: white;
   background-color: #000060;
   border: none;
@@ -38,16 +36,17 @@
 }
 
 h1 {
+    position: relative;
+    left: 35px;
     font-size: 40px;
-    margin-top: 2.5em;
 }
 
 #h1-skeleton {
   background-color: #95cfff;
   width: 450px;
   height: 40px;
-  margin-top: 6em;
-  margin-left: 1em;
+  margin-top: -.2em;
+  margin-left: 50px
 }
 
 #wc {
@@ -64,6 +63,9 @@ h1 {
 
 #wc-skeleton {
   background-color: #ffffff;
+  margin-top: 2em;
+  height: 30px;
+  width: 150px;
 }
 
 .detail-container {
@@ -94,24 +96,19 @@ h1 {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid rgb(184, 184, 184);
     font-size: 16px;
     padding-bottom: .2em;
     margin-top: 1em;
 }
 
-.detail-data-skeleton {
-  border-bottom: 1px solid rgb(184, 184, 184);
-  padding-bottom: .4em;
-  margin-top: 1em;
-}
-
 .label-skeleton {
   background-color: #f1f1f1;
   border-radius: 50px;
-  width: 250px;
+  width: 90px;
   height: 20px;
-  margin-top: 1em;
+  margin-top: -.3em;
 }
 
 .label {
@@ -140,19 +137,18 @@ h1 {
 
 .detail-btn {
   background-color: white;
-  height: 50px;
-  width: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: #505050;
+  height: 45px;
+  width: 70px;
   font-size: 20px;
-  border: .08em solid #d3d3d3;
-  transition: 0.2s;
+  border: .08em solid #efefef;
+  transition: 0.3s;
   cursor: pointer;
 }
 
 .detail-btn:disabled {
   cursor: not-allowed;
+  color: #d1d1d1;
 }
 
 .detail-btn:hover {
