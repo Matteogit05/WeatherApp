@@ -34,21 +34,12 @@ export class Detail {
   date = toSignal(this.route.paramMap.pipe(map((paramMap) => paramMap.get('day'))), {
     initialValue: null
   })
-  dates = this.weatherService.getDates(this.lat, this.lon)
-  dateArray = computed(() => this.dates.value()!.daily.time)
-  dateIndex = computed(() => {
-    let count = 0
-    for (let d of this.dateArray()) {
-      if (d === this.date()) {
-        return count
-      }
-      count = count + 1
-    }
-    return null
-  })
 
-  canGoBack = computed(() => this.dateIndex() != 0)
-  canGoForward = computed(() => this.dateIndex() != 14)
+  readonly dates = this.buildDates()
+  readonly dateIndex = computed(() => this.dates.indexOf(this.date() ?? ''))
+
+  canGoBack = computed(() => this.dateIndex() > 0)
+  canGoForward = computed(() => this.dateIndex() >= 0 && this.dateIndex() < this.dates.length - 1)
 
   time = computed(() => this.detailsData()!.daily.time)
   weatherCode = computed(() =>
@@ -108,9 +99,9 @@ export class Detail {
     })
     this.detailedResponse$
       .pipe(
-        switchMap(() => this.weatherService.getDetailDataObs(this.lat, this.lon, this.date)),
         tap(() => this.isLoading.set(true)),
         debounceTime(500),
+        switchMap(() => this.weatherService.getDetailDataObs(this.lat, this.lon, this.date))
       )
       .subscribe((value) => {
         this.detailsData.set(value)
@@ -118,11 +109,33 @@ export class Detail {
       })
   }
 
+  private buildDates(): string[] {
+    const currentDate = new Date()
+
+    return Array.from({ length: 15 }, (_, offset) => {
+      const date = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate() + offset,
+      )
+
+      const year = date.getFullYear()
+      const month = (date.getMonth() + 1).toString().padStart(2, '0')
+      const day = date.getDate().toString().padStart(2, '0')
+
+      return `${year}-${month}-${day}`
+    })
+  }
+
   previous() {
-    this.navigator.navigate(['/detail', this.dateArray()[this.dateIndex()! - 1]])
+    if (this.canGoBack()) {
+      this.navigator.navigate(['/detail', this.dates[this.dateIndex() - 1]])
+    }
   }
 
   next() {
-    this.navigator.navigate(['/detail', this.dateArray()[this.dateIndex()! + 1]])
+    if (this.canGoForward()) {
+      this.navigator.navigate(['/detail', this.dates[this.dateIndex() + 1]])
+    }
   }
 }
