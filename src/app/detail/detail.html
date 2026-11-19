@@ -9,7 +9,9 @@
   }
   @else {
     <div class="main-section-div-box">
-      <h1>Forecast details of {{ time()[0] | date: 'dd/MM' }}</h1>
+      @if (isDataInRange()) {
+        <h1>Forecast details of {{ time()[0] | date: 'dd/MM' }}</h1>
+      }
     </div>
   }
   <div class="main-section-div-box">
@@ -18,101 +20,110 @@
   </div>
 </div>
 
-@if (isLoading()) {
-  <div id="wc-skeleton-container"><div class="label-skeleton" id="wc-skeleton"></div></div>
-}
-@else {
-  <h2 id="wc">{{ weatherCode() }}</h2>
-}
+@if (isDataInRange()) {
+  @if (isLoading()) {
+    <div id="wc-skeleton-container"><div class="label-skeleton" id="wc-skeleton"></div></div>
+  } @else {
+    <h2 id="wc">{{ weatherCode() }}</h2>
+  }
 
-<div class="detail-container">
-      <div class="detail-subdiv">
-          <div class="detail-datas">
-              <div class="detail-data">
-                  <div class="label">Max temperature</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ maxTemperature() }} °C</div>}
-              </div>
-              <div class="detail-data">
-                  <div class="label">Min temperature</div>
-                @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ minTemperature() }} °C</div>}
-              </div>
-              <div class="detail-data">
-                  <div class="label">Rain sum</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ rainSum() }} mm</div>}
-              </div>
-              <div class="detail-data">
-                  <div class="label">Prec. prob. max</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ precProb() }} %</div>}
-              </div>
-              <div class="detail-data">
-                  <div class="label" matTooltip="Mean value of this day">Cloud cover</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ cloudCover() }} %</div>}
-              </div>
-              <div class="detail-data">
-                  <div class="label" matTooltip="Mean value of this day">Relative humidity</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ relativeHumidity() }} %</div>}
-              </div>
-              <div class="detail-data">
-                  <div class="label" matTooltip="Mean value of this day">Surface pressure</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ surfacePressure() }} hPa</div>}
-              </div>
-              <div class="detail-data">
-                  <div class="label" matTooltip="Mean value of this day">Visibility</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ visibilityMean() }} km</div>}
-              </div>
-          </div>
-          <div class="detail-datas">
-              <div class="detail-data">
-                  <div class="label" matTooltip="Mean value of this day">Wind speed</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ windSpeed() }} km/h</div>}
-              </div>
-              <div class="detail-data">
-                  <div class="label" matTooltip="Dominant value of this day">Wind direction</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ windDirection() }}</div>}
-              </div>
-              <div class="detail-data">
-                  <div class="label">Sunrise</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ sunrise()[0] | date: 'HH:mm'}}</div>}
-              </div>
-              <div class="detail-data">
-                  <div class="label">Sunset</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ sunset()[0] | date: 'HH:mm'}}</div>}
-              </div>
-              <div class="detail-data">
-                  <div class="label">Daylight</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ daylight() }}</div>}
-              </div>
-              <div class="detail-data">
-                  <div class="label">Moonrise</div>
-                  @if (isLoading()) {<div class="label-skeleton"></div>} @else {
-                    @if (moonrise()[0] === null) {
-                      <div>N/A</div>
-                    } @else {
-                      <div>{{ moonrise()[0] | date: 'HH:mm' }}</div>
-                    }
-                  }
-              </div>
-              <div class="detail-data">
-                  <div class="label">Moonset</div>
-                  @if (isLoading()) {
-                    <div class="label-skeleton"></div>
-                  } @else {
-                    @if (moonset()[0] === null) {
-                      <div>N/A</div>
-                    }
-                    @else {
-                      <div>{{ moonset()[0] | date: 'HH:mm' }}</div>
-                    }
-                  }
-              </div>
-              <div class="detail-data">
-                <div class="label">Moon phase</div>
-                @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ moonPhase() }}</div>}
-              </div>
-          </div>
+  <div class="detail-container">
+    <div class="detail-subdiv">
+      <div class="detail-datas">
+        <div class="detail-data">
+          <div class="label">Max temperature</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ maxTemperature() }} °C</div>}
+        </div>
+        <div class="detail-data">
+          <div class="label">Min temperature</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ minTemperature() }} °C</div>}
+        </div>
+        <div class="detail-data">
+          <div class="label">Rain sum</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ rainSum() }} mm</div>}
+        </div>
+        <div class="detail-data">
+          <div class="label">Prec. prob. max</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ precProb() }} %</div>}
+        </div>
+        <div class="detail-data">
+          <div class="label" matTooltip="Mean value of this day">Cloud cover</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ cloudCover() }} %</div>}
+        </div>
+        <div class="detail-data">
+          <div class="label" matTooltip="Mean value of this day">Relative humidity</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ relativeHumidity() }} %</div>}
+        </div>
+        <div class="detail-data">
+          <div class="label" matTooltip="Mean value of this day">Surface pressure</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ surfacePressure() }} hPa</div>}
+        </div>
+        <div class="detail-data">
+          <div class="label" matTooltip="Mean value of this day">Visibility</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ visibilityMean() }} km</div>}
+        </div>
+      </div>
+      <div class="detail-datas">
+        <div class="detail-data">
+          <div class="label" matTooltip="Mean value of this day">Wind speed</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ windSpeed() }} km/h</div>}
+        </div>
+        <div class="detail-data">
+          <div class="label" matTooltip="Dominant value of this day">Wind direction</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ windDirection() }}</div>}
+        </div>
+        <div class="detail-data">
+          <div class="label">Sunrise</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ sunrise()[0] | date: 'HH:mm'}}</div>}
+        </div>
+        <div class="detail-data">
+          <div class="label">Sunset</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ sunset()[0] | date: 'HH:mm'}}</div>}
+        </div>
+        <div class="detail-data">
+          <div class="label">Daylight</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ daylight() }}</div>}
+        </div>
+        <div class="detail-data">
+          <div class="label">Moonrise</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {
+            @if (moonrise()[0] === null) {
+              <div>N/A</div>
+            } @else {
+              <div>{{ moonrise()[0] | date: 'HH:mm' }}</div>
+            }
+          }
+        </div>
+        <div class="detail-data">
+          <div class="label">Moonset</div>
+          @if (isLoading()) {
+            <div class="label-skeleton"></div>
+          } @else {
+            @if (moonset()[0] === null) {
+              <div>N/A</div>
+            }
+            @else {
+              <div>{{ moonset()[0] | date: 'HH:mm' }}</div>
+            }
+          }
+        </div>
+        <div class="detail-data">
+          <div class="label">Moon phase</div>
+          @if (isLoading()) {<div class="label-skeleton"></div>} @else {<div>{{ moonPhase() }}</div>}
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<div id="container-img">
-  <img src="undraw_a-day-at-the-park_9w8d.svg" alt="detail-page-img">
-</div>
+  <div id="container-img">
+    <img src="undraw_a-day-at-the-park_9w8d.svg" alt="detail-page-img">
+  </div>
+} @else {
+  <div id="date-error-container">
+    <h2>Oops!</h2>
+    <p>Something went wrong.</p>
+    <p>Check if the selected date is correct!</p>
+    <p>Or <a routerLink="/">go back</a>.</p>
+    <img src="undraw_warning_tl76.svg" alt="Warning image">
+  </div>
+}

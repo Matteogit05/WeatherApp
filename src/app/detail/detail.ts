@@ -24,6 +24,7 @@ export class Detail {
   private route = inject(ActivatedRoute)
 
   isLoading = signal(true)
+  isDataInRange = signal(true)
   detailsData: WritableSignal<DetailedResponse | null> = signal(null)
 
   private detailedResponse$: Subject<void> = new Subject<void>()
@@ -94,8 +95,12 @@ export class Detail {
 
   constructor() {
     effect(() => {
-      this.date()
-      this.detailedResponse$.next()
+      if (this.dates.includes(this.date()!)) {
+        this.detailedResponse$.next()
+      } else {
+        this.isDataInRange.set(false)
+        this.isLoading.set(false)
+      }
     })
     this.detailedResponse$
       .pipe(
