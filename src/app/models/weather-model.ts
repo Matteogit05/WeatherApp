@@ -46,12 +46,6 @@ export interface DetailedResponse {
   }
 }
 
-export interface Dates {
-  daily: {
-    time: string[]
-  }
-}
-
 /*
   "daily_units": {
     "time": "iso8601",
