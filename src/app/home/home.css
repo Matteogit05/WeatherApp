@@ -5,9 +5,7 @@
 }
 
 h1 {
-    font-size: 70px;
-    margin-left: 1.5em;
-    margin-top: 1.8em;
+  font-size: 60px;
 }
 
 h4 {
@@ -16,23 +14,24 @@ h4 {
 }
 
 #hero-image {
-    height: 250px;
-    margin-bottom: 3.5em;
-    margin-right: 8em;
+  height: 150px;
+  margin: 2em 0 3em 0;
 }
 
 #container-header {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    background-color: #2196f3;
-    color: white;
-    margin-top: 9em;
-    margin-inline: 2em;
-    border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background-color: #1d85d6;
+  color: white;
+  margin-top: 9em;
+  margin-inline: 2em;
+  border-radius: 20px;
+    padding-inline: 6em;
 }
 
 .box-header {
-    margin-top: 3em;
+  display: flex;
+  align-items: center;
 }

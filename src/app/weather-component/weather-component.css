@@ -123,7 +123,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 16px;
+    gap: 12px;
     width: 100%;
     box-sizing: border-box;
     overflow-x: auto;
@@ -136,8 +136,8 @@
 }
 
 .nav-btn {
-    background-color: rgb(185, 234, 247);
-    border: 2px solid rgb(175, 174, 174);
+    background-color: white;
+    border: 2px solid rgb(174, 174, 174);
     border-radius: 10px;
     margin-left: .5em;
     margin-right: .5em;
@@ -147,15 +147,15 @@
     cursor: pointer;
     flex-shrink: 0;
     transition: 0.2s;
-    margin-bottom: 6em;
+    margin-bottom: 3.5em;
 }
 
 .nav-btn:hover {
-    background-color: rgb(150, 210, 230);
+    background-color: #c5e0fb;
 }
 
 .nav-btn:disabled {
     opacity: 0.3;
     cursor: not-allowed;
-    background-color: rgb(185, 234, 247);
+    background-color: rgb(188 188 188);
 }

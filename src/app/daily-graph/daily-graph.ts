@@ -8,7 +8,7 @@ echarts.use([BarChart, LineChart, GridComponent, CanvasRenderer, TitleComponent,
 import { EChartsCoreOption } from 'echarts/core';
 import { Title } from '@angular/platform-browser';
 import { WeatherResponse } from '../models/weather-model';
-import { WeatherService } from '../services/weather-service';
+import { Formatter } from '../services/formatter';
 
 @Component({
   imports: [NgxEchartsDirective],
@@ -20,16 +20,28 @@ import { WeatherService } from '../services/weather-service';
 export class DailyGraph {
   weatherData = input<WeatherResponse>()
   index = input<number>(0)
-  weatherService = inject(WeatherService)
+
+  formatter = inject(Formatter)
 
   chartOption = computed<EChartsCoreOption>(() => {
     const hour = this.weatherData()?.hourly
     return {
       legend: {
         data: ['Temperature', 'Precipitation Probability', 'Cloud Cover', 'Rain'],
+        textStyle: {
+          fontFamily: 'Google Sans Flex, sans-serif',
+        }
       },
       tooltip: {
         trigger: 'axis',
+        borderRadius: '10',
+        shadowColor: 'rgb(200, 200, 200)',
+        borderColor: 'white',
+        textStyle: {
+          fontFamily: 'Google Sans Flex',
+          color: 'rgb(50, 50, 50)',
+          align: 'left',
+        }
       },
       xAxis: {
         type: 'category',

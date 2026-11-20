@@ -44,25 +44,27 @@ a {
 }
 
 #edit-coord-header {
-  margin-top: -2px;
-  margin-left: 1.5em;
+  margin-left: .7em;
+  margin-top: -.2em;
   cursor: pointer;
   border: none;
   outline: none;
   background-color: white;
   font-family: 'Google Sans Flex', sans-serif;
-  font-size: 15px;
-  height: 35px;
-  width: 35px;
+  font-size: 17px;
+  font-weight: 500;
+  height: 30px;
+  width: 50px;
   border-radius: 7px;
   transition: 0.2s
 }
 
 #edit-coord-header:hover {
-  transform: scale(1.04)
+  background-color: #1d85d6;
+  color: white;
 }
 
-#box-hd-right {
+.box-hd {
   display: flex;
   align-items: center;
 }

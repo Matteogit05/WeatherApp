@@ -1,15 +1,18 @@
 @if (weatherData()?.daily) {
+  <div id="card-style-div">
     <div id="card-div" (click)="onClick()">
-        <p><strong>{{ weatherCode() }}</strong></p>
-        @if (precProb() == null) {
-            <p>N/A</p>
-        }
-        @else {
-            <p>{{ precProb() }} %</p>
-        }
-        <p>{{ maxTemperature() }} °C, {{ minTemperature() }} °C</p>
+      <p><strong>{{ weatherCode() }}</strong></p>
+      @if (precProb() == null) {
+        <p class="card-div-p">N/A</p>
+      }
+      @else {
+        <p class="card-div-p">{{ precProb() }} % <img id="raindrop" src="/raindrop.png"></p>
+      }
+      <p class="card-div-p">{{ maxTemperature() }} °C, {{ minTemperature() }} °C</p>
+      <div id="button">
+        <a [routerLink]="['detail', weekDate()]"><button>See more</button></a>
+      </div>
     </div>
-
+  </div>
     <p id="week-date"><strong>{{ weekDate() | date:'dd/MM' }}</strong></p>
-    <a [routerLink]="['detail', weekDate()]"><button>See more</button></a>
 }

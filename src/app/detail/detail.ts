@@ -105,7 +105,6 @@ export class Detail {
     this.detailedResponse$
       .pipe(
         tap(() => this.isLoading.set(true)),
-        debounceTime(500),
         switchMap(() => this.weatherService.getDetailDataObs(this.lat, this.lon, this.date))
       )
       .subscribe((value) => {
